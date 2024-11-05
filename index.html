@@ -374,19 +374,9 @@ async function run_selection() {
 		document.getElementById("progress_bar").value = (3/6)*100;
 
 		// ------------------------------
-
-		// Shuffle file_array
-		var file_array_shuffle = file_array.sort(() => Math.random() - 0.5);
-
-		// Then, take the first value that is [neutralORnot && selected_image]
-		for (let i=0; i<file_array_shuffle.length; i++) {
-			if () {
-		}
-
-		// OR
 		
 		// Randomly select a file from the database
-		// const file_selection = Math.floor(Math.random()*file_array.length);
+		const file_selection = Math.floor(Math.random()*file_array.length);
 		// console.log("file_selection: ", file_selection);
 
 		// ------------------------------
