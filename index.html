@@ -460,14 +460,14 @@ async function select_motivation_topic() {
 	// --------------------------------------
 		
 	if (Math.floor(Math.random()*neutralORnot.length) == 0) {
-		// "neutral"
+		console.log("neutral");
 		const image_prompt = `Create a neutral image about ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
 	
 		const text_prompt = `Write a neutral sentence to obtain more information about ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
 
 		return [image_prompt, text_prompt];
 	} else {
-		// "not neutral"
+		console.log("not neutral");
 		const image_prompt = `Create an image about ${selected_topic} such that one would be motivated to obtain more of the topic of ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
 	
 		const text_prompt = `Write a motivational sentence to encourage ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
