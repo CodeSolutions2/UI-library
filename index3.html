@@ -383,7 +383,9 @@ async function run_selection() {
 		// Shuffle file_array directly.
 		var file_array_rand = file_array.sort(() => Math.random() - 0.5);
 		console.log("file_array_rand: ", file_array_rand);
-    
+
+		// ------------------------------
+		
 		// Find the index values for selected_topic and neutral_selection in the array.
 		var selected_topic_index = file_array_rand.map((text_str, ind) => { 
 			var regex = new RegExp(`${selected_topic}`, 'g');
@@ -395,18 +397,33 @@ async function run_selection() {
 		});
 		selected_topic_index = selected_topic_index.filter((x) => x.length != 0);
 		console.log("selected_topic_index: ", selected_topic_index);
-    
-		var neutral_selection_index = file_array_rand.map((text_str, ind) => { 
-			var regex = new RegExp(`${neutral_selection}`, 'g');
-			if (regex.test(text_str) == true) {
-				return ind;
-			} else {
-				return '';
-			}
-		});
+
+		// ------------------------------
+
+		if (neutral_selection == "neutral") { 
+			var neutral_selection_index = file_array_rand.map((text_str, ind) => { 
+				var regex = new RegExp(`${neutral_selection}`, 'g');
+				if (regex.test(text_str) == true) {
+					return ind;
+				} else {
+					return '';
+				}
+			});
+		} else {
+			var neutral_selection_index = file_array_rand.map((text_str, ind) => { 
+				var regex = new RegExp(`${neutral_selection}`, 'g');
+				if (regex.test(text_str) == false) {
+					return ind;
+				} else {
+					return '';
+				}
+			});
+		}
 		neutral_selection_index = neutral_selection_index.filter((x) => x.length != 0);
 		console.log("neutral_selection_index: ", neutral_selection_index);
-    
+
+		// ------------------------------
+		
 		// Find the intersection of the arrays.
 		var result = selected_topic_index.map((val, ind) => {
 			for (let i=0; i<neutral_selection_index.length; i++) {
