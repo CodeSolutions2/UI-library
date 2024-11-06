@@ -47,8 +47,8 @@ ol#Main_text{ text-align: left; }
 
 .nav_tabs{ display: flex; justify-content: space-around; background-color: white; }
 
-button#Main{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
-button#About{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
+button#Main{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: transparent; transition: all 0.6s ease; max-width: 450px; }
+button#About{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: transparent; transition: all 0.6s ease; max-width: 450px; }
 
 .nav_tabs_link{ display: flex; }
 
@@ -62,17 +62,11 @@ button#About{ position: relative; font-size: 18px; font-weight: bold; height: 45
   
 document.getElementById("Main").addEventListener("click", async () => {
 
-	console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
-
-	// console.log("document.querySelectorAll('.tab_container.nav_tabs'): ", document.querySelectorAll('.tab_container.nav_tabs'));
-	
+	// console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
 	console.log("document.querySelector('.nav_tabs_link'): ", document.querySelector('.nav_tabs_link'));
 	
-	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelector('.nav_tabs_link.active').classList.remove('active');
-	// OR
-	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.remove('active');
-	
-	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.add('active');
+	document.querySelectorAll('.nav_tabs_link').classList.remove('active');
+	document.getElementById("About").classList.add('active');
 	
 	document.getElementById("Main_container").style.display = "block";
 	// document.getElementById("Main_table_container").style.display = "block";
@@ -85,17 +79,11 @@ document.getElementById("Main").addEventListener("click", async () => {
   
 document.getElementById("About").addEventListener("click", async () => {
 	
-	console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
-
-	// console.log("document.querySelectorAll('.tab_container.nav_tabs'): ", document.querySelectorAll('.tab_container.nav_tabs'));
-	
+	// console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
 	console.log("document.querySelector('.nav_tabs_link'): ", document.querySelector('.nav_tabs_link'));
-	
-	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelector('.nav_tabs_link.active').classList.remove('active');
-	// OR
-	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.remove('active');
-	
-	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.add('active');
+
+	document.querySelectorAll('.nav_tabs_link').classList.remove('active');
+	document.getElementById("Main").classList.add('active');
 	
 	document.getElementById("Main_container").style.display = "none";
 	// document.getElementById("Main_table_container").style.display = "none";
