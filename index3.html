@@ -369,7 +369,7 @@ async function run_selection() {
 			
 		// Fetch a list of the contents of the GCP Storage Bucket
 		var file_array = await List_bucket_contents();
-		console.log("file_array: ", file_array);
+		// console.log("file_array: ", file_array);
 
 		document.getElementById("progress_bar").value = (3/6)*100;
 
@@ -385,10 +385,26 @@ async function run_selection() {
 		console.log("file_array_rand: ", file_array_rand);
     
 		// Find the index values for selected_topic and neutral_selection in the array.
-		var selected_topic_index = file_array_rand.findIndex((val) => val === selected_topic);
+		var selected_topic_index = file_array_rand.map((text_str, ind) => { 
+			var regex = new RegExp(`${selected_topic}`, 'g');
+			if (regex.test(text_str) == true) {
+				return ind;
+			} else {
+				return '';
+			}
+		});
+		selected_topic_index = selected_topic_index.filter((x) => x.length != 0);
 		console.log("selected_topic_index: ", selected_topic_index);
     
-		var neutral_selection_index = file_array_rand.findIndex((val) => val === neutral_selection);
+		var neutral_selection_index = file_array_rand.map((text_str, ind) => { 
+			var regex = new RegExp(`${neutral_selection}`, 'g');
+			if (regex.test(text_str) == true) {
+				return ind;
+			} else {
+				return '';
+			}
+		});
+		neutral_selection_index = neutral_selection_index.filter((x) => x.length != 0);
 		console.log("neutral_selection_index: ", neutral_selection_index);
     
 		// Find the intersection of the arrays.
