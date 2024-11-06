@@ -381,25 +381,25 @@ async function run_selection() {
 
 		// Shuffle an index the length of file_array.
 		// var rand_ind = Array.from({ length: file_array.length }, (val, ind) => { return ind; }).sort(() => Math.random() - 0.5);
-    // Shuffle file_array with the shuffled index.
-    // var file_array_rand = rand_ind.map((val, ind) => { return file_array.at(val); });
-    // OR
-    // Shuffle file_array directly.
-    var file_array_rand = file_array.sort(() => Math.random() - 0.5);
+		// Shuffle file_array with the shuffled index.
+		// var file_array_rand = rand_ind.map((val, ind) => { return file_array.at(val); });
+		// OR
+		// Shuffle file_array directly.
+		var file_array_rand = file_array.sort(() => Math.random() - 0.5);
 		console.log("file_array_rand: ", file_array_rand);
     
 		// Find the index values for selected_topic and neutral_selection in the array.
 		var selected_topic_index = file_array_rand.findIndex((val) => val === selected_topic);
-    console.log("selected_topic_index: ", selected_topic_index);
+		console.log("selected_topic_index: ", selected_topic_index);
     
-    var neutral_selection_index = file_array_rand.findIndex((val) => val === neutral_selection);
-    console.log("neutral_selection_index: ", neutral_selection_index);
+		var neutral_selection_index = file_array_rand.findIndex((val) => val === neutral_selection);
+		console.log("neutral_selection_index: ", neutral_selection_index);
     
-    // Find the intersection of the arrays.
-    const setA = new Set(selected_topic_index);
-    const setB = new Set(neutral_selection_index);
-    var file_selection = setA.intersection(setB).at(0);
-    console.log("file_selection: ", file_selection);
+		// Find the intersection of the arrays.
+		const setA = new Set(selected_topic_index);
+		const setB = new Set(neutral_selection_index);
+		var file_selection = setA.intersection(setB).at(0);
+		console.log("file_selection: ", file_selection);
     
 		// OR
 		
@@ -502,7 +502,7 @@ async function select_topic() {
 	
 		const text_prompt = `Write a neutral statement about ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
 
-		return [image_prompt, text_prompt];
+		return [image_prompt, text_prompt, selected_topic, neutral_selection];
 	} else {
 		const image_prompt = `Create an image about ${selected_topic}, that is societally acceptable and decent, such that one would be motivated to obtain more of the topic of ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
 	
