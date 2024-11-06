@@ -47,9 +47,7 @@ ol#Main_card_text{ text-align: left; }
 // -----------------------------------------
   
 document.getElementById("Main").addEventListener("click", async () => {
-
-	// document.getElementById("Main").class = "nav-link active";
-	// OR
+	
 	// console.log("document.querySelectorAll('.nav.nav-tabs.card-header-tabs'): ", document.querySelectorAll('.nav.nav-tabs.card-header-tabs'));
 	// console.log("document.querySelector('.nav-link.active'): ", document.querySelector('.nav-link.active'));
 	
@@ -63,8 +61,7 @@ document.getElementById("Main").addEventListener("click", async () => {
 	document.getElementById("Main_card_title").style.display = "block";
 	document.getElementById("Main_card_subtitle").style.display = "block";
 	document.getElementById("Main_card_text").style.display = "block";
-
-	document.getElementById("About").class = "nav-link";
+	
 	document.getElementById("About_card_body").style.display = "none";
 	document.getElementById("About_card_title").style.display = "none";
 	document.getElementById("About_card_text").style.display = "none";
@@ -74,8 +71,6 @@ document.getElementById("Main").addEventListener("click", async () => {
 // -----------------------------------------
   
 document.getElementById("About").addEventListener("click", async () => {
-
-	document.getElementById("Main").class = "nav-link";
 
 	// document.querySelectorAll('.nav.nav-tabs.card-header-tabs')[0].querySelector('.nav-link.active').classList.remove('active');
 	// OR
@@ -88,7 +83,6 @@ document.getElementById("About").addEventListener("click", async () => {
 	document.getElementById("Main_card_subtitle").style.display = "none";
 	document.getElementById("Main_card_text").style.display = "none";
 
-	document.getElementById("About").class = "nav-link active";
 	document.getElementById("About_card_body").style.display = "block";
 	document.getElementById("About_card_title").style.display = "block";
 	document.getElementById("About_card_text").style.display = "block";
