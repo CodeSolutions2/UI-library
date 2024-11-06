@@ -62,14 +62,17 @@ button#About_tab_button{ position: relative; font-size: 18px; font-weight: bold;
   
 document.getElementById("Main").addEventListener("click", async () => {
 
+	console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
+
 	console.log("document.querySelectorAll('.tab_container.nav_tabs'): ", document.querySelectorAll('.tab_container.nav_tabs'));
-	console.log("document.querySelector('.nav_tabs_link.active'): ", document.querySelector('.nav_tabs_link.active'));
+	
+	console.log("document.querySelector('.nav_tabs_link'): ", document.querySelector('.nav_tabs_link'));
 	
 	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelector('.nav_tabs_link.active').classList.remove('active');
 	// OR
-	document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.remove('active');
+	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.remove('active');
 	
-	document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.add('active');
+	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.add('active');
 	
 	document.getElementById("Main_card_body").style.display = "block";
 	document.getElementById("Main_card_title").style.display = "block";
@@ -86,12 +89,18 @@ document.getElementById("Main").addEventListener("click", async () => {
 // -----------------------------------------
   
 document.getElementById("About").addEventListener("click", async () => {
+	
+	console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
 
+	console.log("document.querySelectorAll('.tab_container.nav_tabs'): ", document.querySelectorAll('.tab_container.nav_tabs'));
+	
+	console.log("document.querySelector('.nav_tabs_link'): ", document.querySelector('.nav_tabs_link'));
+	
 	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelector('.nav_tabs_link.active').classList.remove('active');
 	// OR
-	document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.remove('active');
+	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.remove('active');
 	
-	document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.add('active');
+	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.add('active');
 	
 	document.getElementById("Main_card_body").style.display = "none";
 	document.getElementById("Main_card_title").style.display = "none";
