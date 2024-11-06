@@ -224,15 +224,11 @@ async function run_selection() {
 	var dropdown_option_type = document.getElementById("dropdown_options").value;
 	
 	// Get randomly selected image and text prompts
-	const [image_prompt, text_prompt, selected_topic, neutral_selection] = await select_topic()
-		.then(async function(data) { 
-			console.log("image_prompt: ", image_prompt);
-			console.log("text_prompt: ", text_prompt);
-			console.log("selected_topic: ", selected_topic);
-			console.log("neutral_selection: ", neutral_selection);
-			return data; 
-		})
-		.catch(error => console.error("error: ", error));
+	const [image_prompt, text_prompt, selected_topic, neutral_selection] = await select_topic();
+	console.log("image_prompt: ", image_prompt);
+	console.log("text_prompt: ", text_prompt);
+	console.log("selected_topic: ", selected_topic);
+	console.log("neutral_selection: ", neutral_selection);
 
 	// --------------------------------------
 
