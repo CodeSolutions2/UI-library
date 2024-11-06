@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<h1>Automatic Memetics Motivational Image Generation</h1>
+<p>A field of study called memetics arose in the 1990s to explore the concepts and transmission of memes in terms of an evolutionary model. An Internet meme, or meme is a cultural item (such as an idea, behavior, or style) that spreads across the Internet, primarily through social media platforms. Typically, images, videos, GIFs, and other "viral media" content are used to encourage mimicking/miming of a concept [<a href="https://en.wikipedia.org/wiki/Memetics">Wikipedia: Memetics</a>, <a href="https://en.wikipedia.org/wiki/Internet_meme">Wikipedia: Internet meme</a>].</p>
+<h3>The inspriation of this webapp is to encourage mimicking of motivation and leading a happy-productive life, by generating motivational images using AI models.</h3>
+<ol type="A">
+	<li>Select the prompts to receive a motivational AI generated image on important topics including: health, education, life-balance, happiness, success, effective communication.</li>
+	<li>Save a screenshot of your motivational image!</li>
+</ol>
+
+<!-- View two split window -->
+<div align="left">
+<table style='text-align: left; width: 300px; display:block'>
+<tr>
+        
+<td>
+<h3>[1] Select a model and/or image size.</h3>
+<!-- Drop down menu: put in body -->
+<label for="select_dropdown_option_label" style="display:block">Select a drop down option:</label>
+<select name="dropdown_options" id="dropdown_options" style="display:block">
+  <option value="---">Select an option</option>
+  <option value="openai_dalle2">OpenAI dall-e-2</option>
+  <option value="openai_dalle3">OpenAI dall-e-3</option>
+  <option value="google_imagen">Google imagen</option>
+  <option value="free_image_from_database">Free image from database</option>
+</select>
+
+<br>
+
+<!-- Drop down menu -->
+<h3 id="enter_key" style="display:none">[0] Enter OPENAI_API_KEY, be sure to obtain a OpenAI key from https://platform.openai.com/login?launch.</h3>
+<input id="OPENAI_API_KEY" type="text" value="" placeholder="OPENAI_API_KEY" rows="10" cols="100" style="display:none; text-align: left; width: 150px;">
+<h3 id="enter_key0" style="display:none">[0] Enter GOOGLE_API_KEY, be sure to obtain a Google key from https://aistudio.google.com/app/apikey.</h3>
+<input id="GOOGLE_API_KEY" type="text" value="" placeholder="GOOGLE_API_KEY" rows="10" cols="100" style="display:none; text-align: left; width: 150px;">
+	
+
+<label id="image_size_list_dalle2_label" style="display:none">Select a desired image size:</label>
+<select name="image_size_list_dalle2" id="image_size_list_dalle2" style="display:none">
+  <option value="---">Select an option</option>
+  <option value="256x256">256x256</option>
+  <option value="512x512">512x512</option>
+  <option value="1024x1024">1024x1024</option>
+</select>
+
+<label id="image_size_list_dalle3_label" style="display:none">Select a desired image size:</label>
+<select name="image_size_list_dalle3" id="image_size_list_dalle3" style="display:none">
+  <option value="---">Select an option</option> 
+  <option value="1024x1024">1024x1024</option>
+  <option value="1792x1024">1792x1024</option>
+  <option value="1024x1792">1024x1792</option>
+</select>
+
+<br>
+	
+<button id="run_selection" onclick="run_selection()" style="display:block;">[2] Display the image</button>
+<hr id="line_0" style="display:none;">
+
+<hr id="line_0" style="display:none;">
+
+<br><br>
+	
+<progress id="progress_bar" max="100" value="0" style="display:none">0%</progress>
+</td>
+
+<!-- View results -->
+<td id="display_area">
+<div style="width:100%;height:100%;position:absolute;vertical-align:middle;text-align:left;"><canvas id="canvas_img" width="224" height="224" style="display:none"></canvas><div>
+<div id="notification" style="font-family:courier;font-size:15px;"></div>
+<div id="error" style="font-family:courier;font-size:15px;"></div
+
+<br><br>
+	
+</td>
+
+</tr>
+</table>
+</div>  
+	
+<!-- --------------------------------------------------- -->
+<!--  select { max-height: 30px; max-width: 100px; } -->
+  
+<style>
+canvas {border: 1px solid black; position: absolute; display: inline-block; z-index: 0; top: 150px;}
+
+p { font-family:courier; font-size:15px; font-style: italic; }
+
+button {position: relative; font-size: 18px; 
+      font-weight: bold; 
+      height: 45px; 
+      padding: 10px 20px; 
+      background: white; 
+      overflow: hidden; 
+      border-radius: 10px; 
+      border: 2px solid; 
+      color: #d6571c; transition: all 0.6s ease;  }
+	
+div { padding: 10px; display:block; font-family:courier; font-size:15px; height:300px; z-index: 0;}
+div#notification {color: #3236a8; position: relative; z-index: 0;}
+div#error {color: #bd1f17; position: relative; z-index: 0;}
+
+select { max-height: 30px;}
+
+table {vertical-align: top; border-collapse: collapse; position: relative; z-index: 0; border: 0px solid black;}
+
+tr {vertical-align: top; border: 0px solid black; padding: 10px 50px; }
+
+th, td {vertical-align: top; border: 0px solid black; padding: 10px; }
+th#pdf_viewer_input {width: 100%; }
+th#pdf_viewer_output {width: 100%; }
+	
+</style>
+
+
+
+<!-- --------------------------------------------------- -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+// ------------------------------------------
+	
+window.addEventListener('beforeunload', function() {
+	window.location.href = window.location.href + '?nocache=' + new Date().getTime();
+	document.getElementById("dropdown_options").selectedIndex = 0;
+});
+
+// ------------------------------------------
+
+const neutralORnot = ["neutral", "not_neutral"];
+
+const motivation_topics = ["health", "education", "life-balance", "happiness", "success", "effective communication"];
+
+var ctx = document.getElementById("canvas_img").getContext("2d");
+	
+var font_height = 40;
+var width;
+var height;
+const padding = 4;
+
+const BUCKET_NAME = "memetics-motivation";
+
+var imageData;
+
+// ------------------------------------------
+// UI
+// ------------------------------------------  
+async function processEvent_dropdown_options(event) {
+
+	console.log('document.getElementById("dropdown_options").selectedIndex: ', document.getElementById("dropdown_options").selectedIndex);
+	
+	if (document.getElementById("dropdown_options").selectedIndex == 0) {
+		// Select an option
+		document.getElementById("enter_key").style.display = 'none';
+		document.getElementById("OPENAI_API_KEY").style.display = 'none';
+		document.getElementById("enter_key0").style.display = 'none';
+		document.getElementById("GOOGLE_API_KEY").style.display = 'none';
+		document.getElementById("image_size_list_dalle2_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle2").style.display = 'none';
+		document.getElementById("image_size_list_dalle3_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle3").style.display = 'none';
+		
+	} else if (document.getElementById("dropdown_options").selectedIndex == 1) {
+		// OpenAI dall-e-2
+		document.getElementById("enter_key").style.display = 'block';
+		document.getElementById("OPENAI_API_KEY").style.display = 'block';
+		document.getElementById("enter_key0").style.display = 'none';
+		document.getElementById("GOOGLE_API_KEY").style.display = 'none';
+		document.getElementById("image_size_list_dalle2_label").style.display = 'block';
+		document.getElementById("image_size_list_dalle2").style.display = 'block';
+		document.getElementById("image_size_list_dalle3_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle3").style.display = 'none';
+
+	} else if (document.getElementById("dropdown_options").selectedIndex == 2) {
+		// OpenAI dall-e-3
+		document.getElementById("enter_key").style.display = 'block';
+		document.getElementById("OPENAI_API_KEY").style.display = 'block';
+		document.getElementById("enter_key0").style.display = 'none';
+		document.getElementById("GOOGLE_API_KEY").style.display = 'none';
+		document.getElementById("image_size_list_dalle2_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle2").style.display = 'none';
+		document.getElementById("image_size_list_dalle3_label").style.display = 'block';
+		document.getElementById("image_size_list_dalle3").style.display = 'block';
+		
+	} else if (document.getElementById("dropdown_options").selectedIndex == 3) {
+		// Google imagen
+		document.getElementById("enter_key").style.display = 'none';
+		document.getElementById("OPENAI_API_KEY").style.display = 'none';
+		document.getElementById("enter_key0").style.display = 'block';
+		document.getElementById("GOOGLE_API_KEY").style.display = 'block';
+		document.getElementById("image_size_list_dalle2_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle2").style.display = 'none';
+		document.getElementById("image_size_list_dalle3_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle3").style.display = 'none';
+
+	} else if (document.getElementById("dropdown_options").selectedIndex == 4) {
+		// Free image from database
+		document.getElementById("enter_key").style.display = 'none';
+		document.getElementById("OPENAI_API_KEY").style.display = 'none';
+		document.getElementById("enter_key0").style.display = 'none';
+		document.getElementById("GOOGLE_API_KEY").style.display = 'none';
+		document.getElementById("image_size_list_dalle2_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle2").style.display = 'none';
+		document.getElementById("image_size_list_dalle3_label").style.display = 'none';
+		document.getElementById("image_size_list_dalle3").style.display = 'none';
+	}
+}
+
+document.getElementById("dropdown_options").addEventListener("change", processEvent_dropdown_options, false);
+	
+// ------------------------------------------
+
+
+
+async function run_selection() {
+
+	// --------------------------------------
+	
+	document.getElementById("progress_bar").style.display = "block";
+	
+	var dropdown_option_type = document.getElementById("dropdown_options").value;
+	
+	// Get randomly selected image and text prompts
+	const [image_prompt, text_prompt, selected_topic, neutral_selection] = await select_motivation_topic();
+	console.log("image_prompt: ", image_prompt);
+	console.log("text_prompt: ", text_prompt);
+	console.log("selected_topic: ", selected_topic);
+	console.log("neutral_selection: ", neutral_selection);
+
+	// --------------------------------------
+
+	document.getElementById("progress_bar").value = (1/6)*100;
+	
+	if (dropdown_option_type == 'openai_dalle2') {
+		
+		const model_name = 'dall-e-2';
+		const image_size = document.getElementById("image_size_list_dalle2").value;
+		await assign_width_height(image_size);
+
+		document.getElementById("progress_bar").value = (2/6)*100;
+
+		// ------------------------------
+		
+		const image_url = await create_image_call_API_OpenAI(model_name, image_size, image_prompt);
+		console.log("image_url: ", image_url);
+
+		document.getElementById("progress_bar").value = (3/6)*100;
+
+		// ------------------------------
+		
+		// Generate automated message for the image
+		const generated_text = await create_text_call_API_OpenAI(text_prompt);
+		console.log("generated_text: ", generated_text);
+
+		document.getElementById("progress_bar").value = (4/6)*100;
+
+		// ------------------------------
+		
+		const generated_text_array = await preprocess_text(generated_text);
+
+		document.getElementById("progress_bar").value = (5/6)*100;
+
+		// ------------------------------
+		
+		// Display image
+		imageData = await display_all(generated_text_array, image_url, 'image', 'with_text');
+		console.log('imageData: ', imageData);
+
+		
+	} else if (dropdown_option_type == 'openai_dalle3') {
+		
+		const model_name = 'dall-e-3';
+		const image_size = document.getElementById("image_size_list_dalle3").value;
+		await assign_width_height(image_size);
+
+		document.getElementById("progress_bar").value = (2/6)*100;
+
+		// ------------------------------
+		
+		const image_url = await create_image_call_API_OpenAI(model_name, image_size, image_prompt);
+		console.log("image_url: ", image_url);
+
+		document.getElementById("progress_bar").value = (3/6)*100;
+
+		// ------------------------------
+		
+		// Generate automated message for the image
+		const generated_text = await create_text_call_API_OpenAI(text_prompt);
+		console.log("generated_text: ", generated_text);
+
+		document.getElementById("progress_bar").value = (4/6)*100;
+
+		// ------------------------------
+		
+		const generated_text_array = await preprocess_text(generated_text);
+
+		document.getElementById("progress_bar").value = (5/6)*100;
+
+		// ------------------------------
+		
+		// Display image
+		imageData = await display_all(generated_text_array, image_url, 'image', 'with_text');
+		console.log('imageData: ', imageData);
+		
+	} else if (dropdown_option_type == 'google_imagen') {
+
+		document.getElementById("progress_bar").value = (2/6)*100;
+
+		// ------------------------------
+		
+		var image_size = "512x512";
+		await assign_width_height(image_size);
+		
+		document.getElementById("progress_bar").value = (3/6)*100;
+
+		// ------------------------------
+		
+		// Generate automated message for the image
+		var generated_text = await create_text_call_API_Gemini(text_prompt);
+		// console.log("generated_text: ", generated_text);
+
+		document.getElementById("progress_bar").value = (4/6)*100;
+
+		// ------------------------------
+
+		// Obtain relevant sentences of text
+		var all_generated_text = generated_text.split(':').at(1);
+		console.log("all_generated_text: ", all_generated_text);
+
+		// Obtain an array of motivational sentences
+		var motivational_sentences = all_generated_text.split('.');
+		console.log("motivational_sentences: ", motivational_sentences);
+
+		// ------------------------------
+		
+		// Remove spaces from the begining of text in array
+		motivational_sentences = motivational_sentences.map((val, ind) => { return `"${val.replace(/^\s+/g, "")}"`; });
+		const NonEmptyVals_toKeep = (x) => x.length != 0;
+		motivational_sentences = motivational_sentences.filter(NonEmptyVals_toKeep);
+		console.log("motivational_sentences: ", motivational_sentences);
+
+		// ------------------------------
+		
+		// The model gives too many phrases: so obtain only one of the phrases
+		var final_selection = Math.floor(Math.random() * motivational_sentences.length);
+		generated_text = motivational_sentences.at(final_selection);
+		console.log("generated_text: ", generated_text);
+
+		// ------------------------------
+		
+		const generated_text_array = await preprocess_text(generated_text);
+
+		document.getElementById("progress_bar").value = (5/6)*100;
+
+		// ------------------------------
+	
+		// Display output
+		var option_image = ['solid', 'gradient'].at(Math.floor(Math.random()*2));
+		imageData = await display_all(generated_text_array, '', option_image, 'with_text');
+		console.log('imageData: ', imageData);
+		
+    
+	} else if (dropdown_option_type == 'free_image_from_database') {
+
+		document.getElementById("progress_bar").value = (2/6)*100;
+			
+		// Fetch a list of the contents of the GCP Storage Bucket
+		var file_array = await List_bucket_contents();
+		console.log("file_array: ", file_array);
+
+		document.getElementById("progress_bar").value = (3/6)*100;
+
+		// ------------------------------
+
+		// Shuffle an index the length of file_array.
+		// var rand_ind = Array.from({ length: file_array.length }, (val, ind) => { return ind; }).sort(() => Math.random() - 0.5);
+    // Shuffle file_array with the shuffled index.
+    // var file_array_rand = rand_ind.map((val, ind) => { return file_array.at(val); });
+    // OR
+    // Shuffle file_array directly.
+    var file_array_rand = file_array.sort(() => Math.random() - 0.5);
+		console.log("file_array_rand: ", file_array_rand);
+    
+		// Find the index values for selected_topic and neutral_selection in the array.
+		var selected_topic_index = file_array_rand.findIndex((val) => val === selected_topic);
+    console.log("selected_topic_index: ", selected_topic_index);
+    
+    var neutral_selection_index = file_array_rand.findIndex((val) => val === neutral_selection);
+    console.log("neutral_selection_index: ", neutral_selection_index);
+    
+    // Find the intersection of the arrays.
+    const setA = new Set(selected_topic_index);
+    const setB = new Set(neutral_selection_index);
+    var file_selection = setA.intersection(setB).at(0);
+    console.log("file_selection: ", file_selection);
+    
+		// OR
+		
+		// Randomly select a file from the database
+		// const file_selection = Math.floor(Math.random()*file_array.length);
+		// console.log("file_selection: ", file_selection);
+
+		// ------------------------------
+		
+		document.getElementById("progress_bar").value = (4/6)*100;
+		
+		const selected_image = file_array.at(file_selection);
+		console.log("selected_image: ", selected_image);
+		
+		// ------------------------------
+		
+		// Obtain image size, and set canvas size
+		const selected_image_arr = selected_image.split('_');
+		const image_size = selected_image_arr.at(1);
+		await assign_width_height(image_size);
+
+		document.getElementById("progress_bar").value = (5/6)*100;
+
+		// ------------------------------
+		
+		// Fetch the image from GCP Storage Bucket
+		const image_url = `https://storage.googleapis.com/${BUCKET_NAME}/${selected_image}`;
+
+		document.getElementById('notification').innerHTML = "Please wait, the image is being retrieved."
+
+		// ------------------------------
+		
+		// Display output
+		imageData = await display_all('', image_url, 'image', 'without_text');
+		console.log('imageData: ', imageData);
+		
+	} else {
+		document.getElementById('notification').innerHTML = "No model and image size was selected. Select a model and image size.";
+	}
+
+}
+	
+	
+
+  
+
+// ------------------------------------------
+// SUBFUNCTIONS
+// ------------------------------------------
+async function assign_width_height(image_size) {
+
+	width = await Number(image_size.split('x').pop());
+	console.log('width: ', width);
+	document.getElementById("canvas_img").width = width; // Resize the canvas that is originally set to 224
+
+	height = await Number(image_size.split('x').shift());
+	console.log('height: ', height);
+	document.getElementById("canvas_img").height = height;	// Resize the canvas that is originally set to 224
+}
+
+// ------------------------------------------
+
+async function create_image_call_API_OpenAI(model_name, image_size, image_prompt) {
+
+	var headers = {"Content-Type": "application/json", "Authorization": 'Bearer ' + document.getElementById("OPENAI_API_KEY").value}
+        var data = {"model": model_name, "prompt": image_prompt, "n": 1, "size": image_size};
+	var options = {method : 'POST', headers: headers, body : JSON.stringify(data)};
+				
+	return await fetch('https://api.openai.com/v1/images/generations', options)
+		.then(res => res.json())
+		.then(res => { 
+			let output = JSON.parse(JSON.stringify(res)); 
+			document.getElementById('notification').innerHTML = "Model "+model_name+" and image size "+image_size+" was selected."
+			return output["data"][0]["url"];
+		})
+		.catch(error => { document.getElementById('error').innerHTML = error; });
+}
+
+// ------------------------------------------
+
+async function select_motivation_topic() {
+
+	// Generate one random number from [0 to array_length]
+	const selected_topic = motivation_topics.at(Math.floor(Math.random()*motivation_topics.length));
+	const neutral_selection = neutralORnot.at(Math.floor(Math.random()*neutralORnot.length));
+
+	// --------------------------------------
+	
+	var cur_date_timestamp = Date.now();
+	// console.log("cur_date_timestamp: ", cur_date_timestamp);
+
+	// print the date in correct format
+	var cur_date = new Date(cur_date_timestamp).toString();
+	// console.log("cur_date: ", cur_date);
+
+	// --------------------------------------
+		
+	if (neutral_selection == "neutral") {
+		const image_prompt = `Create a neutral image about ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
+	
+		const text_prompt = `Write a neutral sentence to obtain more information about ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
+
+		return [image_prompt, text_prompt];
+	} else {
+		const image_prompt = `Create an image about ${selected_topic} such that one would be motivated to obtain more of the topic of ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
+	
+		const text_prompt = `Write a motivational sentence to encourage ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
+
+		return [image_prompt, text_prompt, selected_topic, neutral_selection];
+	}
+
+	// --------------------------------------
+}
+
+// ------------------------------------------
+
+async function display_all(generated_text_array, image_url, option_image, option_text) {
+	
+	// Make cavas visible
+	document.getElementById("canvas_img").style.display = "block";
+
+	// ------------------------------
+
+	if (option_image == 'image' && option_text == 'with_text') {
+		// Make an image appear on the canvas
+		var image = new Image();
+		image.src = image_url;
+		image.onload = await function () { 
+			// Draw image on canvas
+			ctx.drawImage(image, 0,0);
+			put_overlay_on_top_of_base_image();
+			write_text(option_text, generated_text_array);
+		}
+		
+	} else if (option_image == 'solid' && option_text == 'with_text') {
+		await solid();
+		put_overlay_on_top_of_base_image();
+		write_text(option_text, generated_text_array);
+		
+	} else if (option_image == 'gradient' && option_text == 'with_text') {
+		await gradient();
+		put_overlay_on_top_of_base_image();
+		write_text(option_text, generated_text_array);
+		
+	} else {
+		// Make an image appear on the canvas
+		var image = new Image();
+		image.src = image_url;
+		image.onload = await function () { ctx.drawImage(image, 0,0); }
+	}
+
+	// ------------------------------
+	
+	document.getElementById("progress_bar").value = (6/6)*100;
+	
+	document.getElementById('notification').innerHTML = "";
+
+	// Remove progress bar after processing
+	document.getElementById("progress_bar").style.display = "none";
+	
+	// ------------------------------
+	
+	return await ctx.getImageData(0, 0, width, height);
+}
+
+// -----------------------------------------------
+
+function put_overlay_on_top_of_base_image() {
+	
+	// Put overlay on top of image to make font more readable and image to look more professional
+	ctx.fillStyle = "rgb(153 153 153 / 40%)";  // Background square over image = grey
+	ctx.fillRect(0, 0, width, height);  // fillRect(x, y, width, height)
+	
+}
+	
+// -----------------------------------------------
+	
+function write_text(option_text, generated_text_array) {
+	
+	if (option_text == 'with_text') {
+		// Select text contrasting colors to background
+		const RGB_contrast = [0, 0, 0];
+		// console.log("RGB_contrast: ", RGB_contrast);
+
+		const RGB_opposite_contrast = [225, 225, 225];
+	
+		const x = 30;
+		var y = 50;
+		ctx.font = "bold "+font_height.toString()+"px serif";
+		ctx.textAlign = "left";
+		
+		generated_text_array.map((phrase, ind) => {
+			// Write text that is filled in
+			ctx.fillStyle = "rgb("+RGB_contrast[0]+" "+RGB_contrast[1]+" "+RGB_contrast[2]+")";
+			ctx.lineWidth = 1;
+			ctx.fillText(phrase, x, y, width);
+
+			// Re-write text outline only, to make text contrasting on the image
+			ctx.strokeStyle = "rgb("+RGB_opposite_contrast[0]+" "+RGB_opposite_contrast[1]+" "+RGB_opposite_contrast[2]+")";
+			ctx.lineWidth = 1;
+			ctx.strokeText(phrase, x, y, width);
+			
+			y = y + Number(font_height) + padding;
+		});
+
+	}
+}
+	
+// -----------------------------------------------
+
+async function solid() {
+  
+  var r = Math.floor(Math.random()*255);
+	var g = Math.floor(Math.random()*255);
+  var b = Math.floor(Math.random()*255);
+  const alpha = Math.floor(Math.random()*100);
+  
+  // ----------------------
+  
+  // Make r, g, b and interesting color range.
+  // Make r from 1 to 255 if r>1, then output=r else output=1
+  r = r>0 ? r : 1;
+  g = g>0 ? g : 1;
+  b = b>0 ? b : 1;
+
+  // ----------------------
+	
+	ctx.fillStyle = `rgb(${r} ${g} ${b} / ${alpha}%)`;
+	ctx.fillRect(0, 0, width, height);
+}
+
+// -----------------------------------------------
+	
+async function gradient() {
+
+	// Make a gradient colored background appear on the canvas
+	const max_val = 20;
+
+	// ----------------------
+	
+	// This changes the width of the square
+	const num_of_squares_initial = Math.floor(Math.random()*max_val);  // a value from 0 to max_val
+
+	// Corrected num_of_squares so value is from 1 to max_val
+  // if num_of_squares_initial>1, then output num_of_squares_initial else output 2
+	const num_of_squares = num_of_squares_initial>1 ? num_of_squares_initial : 2;
+	// console.log("num_of_squares: ", num_of_squares);
+	
+	// ----------------------
+	
+	const val = 255/num_of_squares;
+	// console.log("val: ", val);
+
+	// ----------------------
+
+	const color_selection = Math.floor(Math.random() * 7);
+	// console.log("color_selection: ", color_selection);
+	
+	// ----------------------
+		
+	for (let i = 0; i < num_of_squares; i++) {
+		for (let j = 0; j < num_of_squares; j++) {
+
+			var r;
+			var g;
+			var b;
+			
+			if ( color_selection == 0 ) {
+				// rainbow colors
+				r = Math.floor(255 - val * i);
+				g = Math.floor(255 - val * j);
+				let k = Math.floor(Math.random()*(num_of_squares-1)); // maintains gradient for square size when Math.random()=1
+				b = Math.floor(255 - val * k);
+				
+			} else if ( color_selection == 1 ) {
+				// red and green only
+				r = Math.floor(255 - val * i);
+				g = Math.floor(255 - val * j);
+				b = 0;
+
+			} else if ( color_selection == 2 ) {
+				// green and red only
+				g = Math.floor(255 - val * i);
+				r = Math.floor(255 - val * j);
+				b = 0; 
+
+			} else if ( color_selection == 3 ) {
+				// red and blue only
+				r = Math.floor(255 - val * i);
+				b = Math.floor(255 - val * j);
+				g = 0;
+
+			} else if ( color_selection == 4 ) {
+				// blue and red only
+				b = Math.floor(255 - val * i);
+				r = Math.floor(255 - val * j);
+				g = 0;
+
+			} else if ( color_selection == 5 ) {
+				// blue and green only
+			 	b = Math.floor(255 - val * i);
+				g = Math.floor(255 - val * j);
+				r = 0;
+
+			} else {
+				// green and blue only
+				g = Math.floor(255 - val * i);
+				b = Math.floor(255 - val * j);
+				r = 0;
+			}
+
+      // Make r, g, b and interesting color range
+      r = r>0 ? r : 1;
+      g = g>0 ? g : 1;
+      b = b>0 ? b : 1;
+      
+			ctx.fillStyle = `rgb(${r} ${g} ${b} / 75%)`;
+			
+			ctx.fillRect(j * val, i * val, val, val);
+		}
+	}
+
+}
+
+// -----------------------------------------------
+
+async function create_text_call_API_OpenAI(text_prompt) {
+
+	var headers = {"Content-Type": "application/json", "Authorization": 'Bearer ' + document.getElementById("OPENAI_API_KEY").value};
+	
+        const model_name = 'gpt-4o-mini'; // 'gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4o-mini' 
+        var system_content = "You are a helpful assistant";
+        var assistant_content = "Respond concisely";
+        var messages = [{"role": "system", "content": system_content}, {"role": "user", "content": text_prompt}, {"role": "assistant", "content": assistant_content}];
+        var data = {"model": model_name, 'messages': messages, 'temperature': 0};
+        var url = 'https://api.openai.com/v1/chat/completions';
+        var options = {method : 'post', headers: headers, body : JSON.stringify(data)};
+
+        var generated_text = await fetch(url, options)
+		.then(res => res.json())
+		.then(res => { return JSON.parse(JSON.stringify(res))['choices'][0]['message']['content']; })
+		.catch(error => { document.getElementById('error').innerHTML = error; });
+
+	// Replace hypens with spaces
+	generated_text = await generated_text.replace(/-/g, " ");
+	
+	// Replace double hypens with [dot space]
+	generated_text = await generated_text.replace(/—/g, ". ");
+
+	return generated_text;
+}
+
+// ------------------------------------------
+	
+async function create_text_call_API_Gemini(text_prompt) {
+	
+        var contents = [{"parts": [{"text": text_prompt}]}];
+        var data = {"contents": contents};
+  
+        var url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${document.getElementById("GOOGLE_API_KEY").value}`;
+  
+        var headers = {"Content-Type": "application/json"}
+        var options = {method : 'post', headers: headers, body : JSON.stringify(data)};
+
+        // Print text part of JSON response only with user message
+        var generated_text = await fetch(url, options)
+            .then(res => res.json())
+            .then(res => { console.log("res: ", res); return JSON.parse(JSON.stringify(res))['candidates'][0]['content']['parts'][0]['text']; })
+            .catch(error => { console.log("error: ", error); document.getElementById('error').innerHTML = error; });
+
+	// Replace hypens with spaces
+	generated_text = await generated_text.replace(/-/g, " ");
+	
+	// Replace double hypens with [dot space]
+	generated_text = await generated_text.replace(/—/g, ". ");
+
+	// Remove characters [*]
+	generated_text = await generated_text.replace(/[*]/g, "");
+
+	return generated_text;
+}
+
+// -------------------------------------------------
+
+async function preprocess_text(generated_text) {
+
+	// ------------------------------
+	
+	// Could adjust this by the length of the generated sentence
+	if (width == 256) { font_height = 20; }
+	console.log("font_height: ", font_height);
+
+	// ------------------------------
+	
+	// Measure the max number of [font characters] that can be written on one line
+	// Character Width = Font Size * Character Aspect Ratio = 30 * 0.5 = 15pt
+	const aspect_ratio = 0.6; // larger aspect_ratio the max_num_of_char_per_line is smaller
+	const char_width = font_height*aspect_ratio;
+	console.log("char_width: ", char_width);
+	
+	const max_num_of_char_per_line = await Math.floor(width/char_width);
+	console.log("max_num_of_char_per_line: ", max_num_of_char_per_line);
+
+	// ------------------------------
+	
+	// Separate text into an array for printing line-by-line
+	var c = 0;
+	var word_list = [];
+	var cut_text = [];
+	
+	generated_text.split(" ").map((word, ind) => {
+		c = c + (word.length + 1 + padding); // plus for the space
+
+		if (c > max_num_of_char_per_line){
+			cut_text.push(word_list.join(' '));
+			word_list = [word];
+			c=0;
+		} else {
+			word_list.push(word);
+		}
+	});
+	cut_text.push(word_list.join(' '));
+	console.log('cut_text: ', cut_text);
+
+	return cut_text;
+}
+
+// ----------------------------------------------------
+
+async function List_bucket_contents() {
+	
+	// List contents of the bucket
+	var url = `https://storage.googleapis.com/storage/v1/b/${BUCKET_NAME}/o`
+	
+	return await fetch_on_cloud_storage_return_contents_list(url)
+			.then(async function(xmlDocument) {
+				console.log('xmlDocument: ', xmlDocument);
+				
+				file_array = [];
+				for (var i=0; i<xmlDocument.items.length; i++) {
+					file_array.push(xmlDocument.items[i].name);
+				}
+				// console.log('file_array: ', file_array);
+				return file_array;
+			})
+			.catch(error => console.error(error));
+}
+
+async function fetch_on_cloud_storage_return_contents_list(url) {
+
+	var settings = {
+		type : 'GET',
+		async: true,
+		crossDomain: true,
+		beforeSend: function(xhr) { xhr.withCredentials = true; },
+		success: function(response) { console.log('Success'); },
+		error: function(xhr, status, error) { console.log('Error:', error); }
+	};
+	
+	return $.ajax(url, [,settings]).done(function(response) { return response; });
+}
+
+// -------------------------------------------------
+		
+
+</script>
+</body>
+</html>
