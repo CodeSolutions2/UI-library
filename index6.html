@@ -11,9 +11,9 @@
 
 <div class="nav_tabs">
 
-<button class="nav_tabs_link active" href="#" id="Main"><span class="icon"><i class="fas fa-home"></i></span><span class="title">Main</span></button>
+<button class="nav_tabs_link active" href="#" id="Main"><span class="icon"><i class="fas fa-home"></i></span><span class="title"> Main</span></button>
 
-<button class="nav_tabs_link" href="#" id="About"><span class="icon"><i class="fas fa-info"></i></span><span class="title">About</span></button>
+<button class="nav_tabs_link" href="#" id="About"><span class="icon"><i class="fas fa-info"></i></span><span class="title"> About</span></button>
 
 </div>
 
@@ -21,34 +21,34 @@
 
 <!-- --------------------------------------------------- -->
 
-<div class="card-body" id="Main_card_body">
-<h1 class="card-title" id="Main_card_title">Automatic Memetics Motivational Image Generation</h1>
-<h3 class="card-title" id="Main_card_subtitle">The inspriation of this webapp is to encourage mimicking of motivation and leading a happy-productive life, by generating motivational images using AI models.</h3>
-<ol type="A" class="card-text" id="Main_card_text">
+<div id="Main_container">
+<h1 id="Main_title">Automatic Memetics Motivational Image Generation</h1>
+<h3 id="Main_subtitle">The inspriation of this webapp is to encourage mimicking of motivation and leading a happy-productive life, by generating motivational images using AI models.</h3>
+<ol type="A" id="Main_text">
 <li>Select the prompts to receive a motivational AI generated image on important topics including: health, education, life-balance, happiness, success, effective communication.</li>
 <li>Save a screenshot of your motivational image!</li>
 </ol>
 </div>
 
-<div class="card-body" id="About_card_body">
-<h1 class="card-title" id="About_card_title">Automatic Memetics Motivational Image Generation</h1>
-<p class="card-text" id="About_card_text">A field of study called memetics arose in the 1990s to explore the concepts and transmission of memes in terms of an evolutionary model. An Internet meme, or meme is a cultural item (such as an idea, behavior, or style) that spreads across the Internet, primarily through social media platforms. Typically, images, videos, GIFs, and other "viral media" content are used to encourage mimicking/miming of a concept [<a href="https://en.wikipedia.org/wiki/Memetics">Wikipedia: Memetics</a>, <a href="https://en.wikipedia.org/wiki/Internet_meme">Wikipedia: Internet meme</a>].</p>
+<div id="About_container">
+<h1 id="About_title">Automatic Memetics Motivational Image Generation</h1>
+<p id="About_text">A field of study called memetics arose in the 1990s to explore the concepts and transmission of memes in terms of an evolutionary model. An Internet meme, or meme is a cultural item (such as an idea, behavior, or style) that spreads across the Internet, primarily through social media platforms. Typically, images, videos, GIFs, and other "viral media" content are used to encourage mimicking/miming of a concept [<a href="https://en.wikipedia.org/wiki/Memetics">Wikipedia: Memetics</a>, <a href="https://en.wikipedia.org/wiki/Internet_meme">Wikipedia: Internet meme</a>].</p>
 </div>
 
 <!-- --------------------------------------------------- -->
 
 <style>
-div#Main_card_body{ display:block; }
-div#About_card_body{ display:none; }
-h3#Main_card_subtitle{ text-align: left; }
-ol#Main_card_text{ text-align: left; }
+div#Main_container{ display:block; }
+div#About_container{ display:none; }
+h3#Main_subtitle{ text-align: left; }
+ol#Main_text{ text-align: left; }
 
 .tab_container{ max-width: 500px; }
 
 .nav_tabs{ display: flex; justify-content: space-around; background-color: white; }
 
-button#Main_tab_button{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
-button#About_tab_button{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
+button#Main{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
+button#About{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
 
 .nav_tabs_link{ display: flex; }
 
@@ -74,15 +74,10 @@ document.getElementById("Main").addEventListener("click", async () => {
 	
 	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[0].classList.add('active');
 	
-	document.getElementById("Main_card_body").style.display = "block";
-	document.getElementById("Main_card_title").style.display = "block";
-	document.getElementById("Main_card_subtitle").style.display = "block";
-	document.getElementById("Main_card_text").style.display = "block";
+	document.getElementById("Main_container").style.display = "block";
 	// document.getElementById("Main_table_container").style.display = "block";
 
-	document.getElementById("About_card_body").style.display = "none";
-	document.getElementById("About_card_title").style.display = "none";
-	document.getElementById("About_card_text").style.display = "none";
+	document.getElementById("About_container").style.display = "none";
   
 });
 
@@ -102,15 +97,10 @@ document.getElementById("About").addEventListener("click", async () => {
 	
 	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.add('active');
 	
-	document.getElementById("Main_card_body").style.display = "none";
-	document.getElementById("Main_card_title").style.display = "none";
-	document.getElementById("Main_card_subtitle").style.display = "none";
-	document.getElementById("Main_card_text").style.display = "none";
+	document.getElementById("Main_container").style.display = "none";
 	// document.getElementById("Main_table_container").style.display = "none";
 
-	document.getElementById("About_card_body").style.display = "block";
-	document.getElementById("About_card_title").style.display = "block";
-	document.getElementById("About_card_text").style.display = "block";
+	document.getElementById("About_container").style.display = "block";
   
 });
 
