@@ -408,9 +408,15 @@ async function run_selection() {
 		console.log("neutral_selection_index: ", neutral_selection_index);
     
 		// Find the intersection of the arrays.
-		const setA = new Set(selected_topic_index);
-		const setB = new Set(neutral_selection_index);
-		var file_selection = setA.intersection(setB).at(0);
+		var result = selected_topic_index.map((val, ind) => {
+			for (let i=0; i<neutral_selection_index.length; i++) {
+				return neutral_selection_index.at(i) == val ? val : '';
+			}
+		});
+		result = result.filter((x) => x.length != 0);
+
+		// Select a valid index value
+		var file_selection = result.at(Math.floor(Math.random()*result.length));
 		console.log("file_selection: ", file_selection);
     
 		// OR
