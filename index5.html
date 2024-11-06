@@ -195,8 +195,8 @@ const motivation_topics = ["health", "education", "lifebalance", "happiness", "s
 var ctx = document.getElementById("canvas_img").getContext("2d");
 	
 var font_height = 40;
-var width;
-var height;
+var width = 512;	// default for google_imagen, database
+var height = 512;	// default for google_imagen, database
 const padding = 4;
 
 const BUCKET_NAME = "memetics-motivation";
@@ -364,23 +364,14 @@ async function run_selection() {
 		console.log('imageData: ', imageData);
 		
 	} else if (dropdown_option_type == 'google_imagen') {
-
-		document.getElementById("progress_bar").value = (2/6)*100;
-
-		// ------------------------------
 		
-		var image_size = "512x512";
-		await assign_width_height(image_size);
-		
-		document.getElementById("progress_bar").value = (3/6)*100;
-
 		// ------------------------------
 		
 		// Generate automated message for the image
 		var generated_text = await create_text_call_API_Gemini(text_prompt);
 		// console.log("generated_text: ", generated_text);
 
-		document.getElementById("progress_bar").value = (4/6)*100;
+		document.getElementById("progress_bar").value = (2/6)*100;
 
 		// ------------------------------
 
@@ -392,6 +383,8 @@ async function run_selection() {
 		var motivational_sentences = all_generated_text.split('.');
 		console.log("motivational_sentences: ", motivational_sentences);
 
+		document.getElementById("progress_bar").value = (3/6)*100;
+		
 		// ------------------------------
 		
 		// Remove spaces from the begining of text in array
@@ -424,6 +417,8 @@ async function run_selection() {
 	} else if (dropdown_option_type == 'free_image_from_database') {
 
 		document.getElementById("progress_bar").value = (2/6)*100;
+
+		// ------------------------------
 			
 		// Fetch a list of the contents of the GCP Storage Bucket
 		var file_array = await List_bucket_contents();
