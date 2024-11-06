@@ -71,7 +71,7 @@ document.getElementById("Main").addEventListener("click", async () => {
 	// console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
 	console.log("document.querySelector('.nav_tabs_link'): ", document.querySelector('.nav_tabs_link'));
 	
-	document.querySelectorAll('.nav_tabs_link').classList.remove('active');
+	document.getElementById("Main").classList.remove('active');
 	document.getElementById("About").classList.add('active');
 	
 	document.getElementById("Main_container").style.display = "block";
@@ -88,7 +88,7 @@ document.getElementById("About").addEventListener("click", async () => {
 	// console.log("document.querySelector('.tab_container'): ", document.querySelector('.tab_container'));
 	console.log("document.querySelector('.nav_tabs_link'): ", document.querySelector('.nav_tabs_link'));
 
-	document.querySelectorAll('.nav_tabs_link').classList.remove('active');
+	document.getElementById("About").classList.remove('active');
 	document.getElementById("Main").classList.add('active');
 	
 	document.getElementById("Main_container").style.display = "none";
