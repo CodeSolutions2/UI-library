@@ -411,7 +411,7 @@ async function run_selection() {
 			});
 		} else {
 			var neutral_selection_index = file_array_rand.map((text_str, ind) => { 
-				var regex = new RegExp(`${neutral_selection}`, 'g');
+				var regex = /neutral/g;
 				if (regex.test(text_str) == false) {
 					return ind;
 				} else {
