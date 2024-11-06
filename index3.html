@@ -224,11 +224,15 @@ async function run_selection() {
 	var dropdown_option_type = document.getElementById("dropdown_options").value;
 	
 	// Get randomly selected image and text prompts
-	const [image_prompt, text_prompt, selected_topic, neutral_selection] = await select_motivation_topic();
-	console.log("image_prompt: ", image_prompt);
-	console.log("text_prompt: ", text_prompt);
-	console.log("selected_topic: ", selected_topic);
-	console.log("neutral_selection: ", neutral_selection);
+	const [image_prompt, text_prompt, selected_topic, neutral_selection] = await select_topic()
+		.then(async function(data) { 
+			console.log("image_prompt: ", image_prompt);
+			console.log("text_prompt: ", text_prompt);
+			console.log("selected_topic: ", selected_topic);
+			console.log("neutral_selection: ", neutral_selection);
+			return data; 
+		})
+		.catch(error => console.error("error: ", error));
 
 	// --------------------------------------
 
@@ -476,7 +480,7 @@ async function create_image_call_API_OpenAI(model_name, image_size, image_prompt
 
 // ------------------------------------------
 
-async function select_motivation_topic() {
+async function select_topic() {
 
 	// Generate one random number from [0 to array_length]
 	const selected_topic = motivation_topics.at(Math.floor(Math.random()*motivation_topics.length));
@@ -494,15 +498,15 @@ async function select_motivation_topic() {
 	// --------------------------------------
 		
 	if (neutral_selection == "neutral") {
-		const image_prompt = `Create a neutral image about ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
+		const image_prompt = `Create a neutral image about ${selected_topic}, that is societally acceptable and decent. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
 	
-		const text_prompt = `Write a neutral phrase to obtain more information about ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
+		const text_prompt = `Write a neutral statement about ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
 
 		return [image_prompt, text_prompt];
 	} else {
-		const image_prompt = `Create an image about ${selected_topic} such that one would be motivated to obtain more of the topic of ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
+		const image_prompt = `Create an image about ${selected_topic}, that is societally acceptable and decent, such that one would be motivated to obtain more of the topic of ${selected_topic}. In addition today's date is ${cur_date}, if there is a major holiday within the next 10 days, use themes from the upcoming holiday to create the image.`;
 	
-		const text_prompt = `Write a motivational phrase to encourage ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
+		const text_prompt = `Write a motivational statement to encourage ${selected_topic}. Be creative and give varying responses, limit the response to 25 words or less.`;
 
 		return [image_prompt, text_prompt, selected_topic, neutral_selection];
 	}
