@@ -43,8 +43,8 @@ ol#Main_card_text{ text-align: left; }
 
 .nav_tabs{ display: flex; justify-content: space-around; background-color: white; }
 
-button#Main_tab_button{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; }
-button#About_tab_button{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; }
+button#Main_tab_button{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
+button#About_tab_button{ position: relative; font-size: 18px; font-weight: bold; height: 45px; padding: 10px 20px; background: #9ed0f0; overflow: hidden; border-radius: 10px; border: 2px solid; color: #9ed0f0; transition: all 0.6s ease; max-width: 450px; }
 
 .nav_tabs_link{ display: flex; }
 
@@ -58,12 +58,10 @@ button#About_tab_button{ position: relative; font-size: 18px; font-weight: bold;
   
 document.getElementById("Main").addEventListener("click", async () => {
 
-	// document.getElementById("Main").class = "nav_tabs_link active";
-	// OR
-	// console.log("document.querySelectorAll('.tab_container.nav_tabs'): ", document.querySelectorAll('.tab_container.nav_tabs'));
-	// console.log("document.querySelector('.nav_tabs_link.active'): ", document.querySelector('.nav_tabs_link.active'));
+	console.log("document.querySelectorAll('.tab_container.nav_tabs'): ", document.querySelectorAll('.tab_container.nav_tabs'));
+	console.log("document.querySelector('.nav_tabs_link.active'): ", document.querySelector('.nav_tabs_link.active'));
 	
-	document.querySelectorAll('.tab_container.nav_tabs')[0].querySelector('.nav_tabs_link.active').classList.remove('active');
+	// document.querySelectorAll('.tab_container.nav_tabs')[0].querySelector('.nav_tabs_link.active').classList.remove('active');
 	// OR
 	document.querySelectorAll('.tab_container.nav_tabs')[0].querySelectorAll('.nav_tabs_link')[1].classList.remove('active');
 	
@@ -73,7 +71,7 @@ document.getElementById("Main").addEventListener("click", async () => {
 	document.getElementById("Main_card_title").style.display = "block";
 	document.getElementById("Main_card_subtitle").style.display = "block";
 	document.getElementById("Main_card_text").style.display = "block";
-	document.getElementById("Main_table_container").style.display = "block";
+	// document.getElementById("Main_table_container").style.display = "block";
 
 	document.getElementById("About_card_body").style.display = "none";
 	document.getElementById("About_card_title").style.display = "none";
@@ -95,7 +93,7 @@ document.getElementById("About").addEventListener("click", async () => {
 	document.getElementById("Main_card_title").style.display = "none";
 	document.getElementById("Main_card_subtitle").style.display = "none";
 	document.getElementById("Main_card_text").style.display = "none";
-	document.getElementById("Main_table_container").style.display = "none";
+	// document.getElementById("Main_table_container").style.display = "none";
 
 	document.getElementById("About_card_body").style.display = "block";
 	document.getElementById("About_card_title").style.display = "block";
