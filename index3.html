@@ -425,14 +425,17 @@ async function run_selection() {
 		// ------------------------------
 		
 		// Find the intersection of the arrays.
-		var result = selected_topic_index.map((val, ind) => {
-			for (let i=0; i<neutral_selection_index.length; i++) {
-				return neutral_selection_index.at(i) == val ? val : '';
+		var result = [];
+		for (let i=0; i<selected_topic_index.length; i++) {
+			for (let j=0; j<neutral_selection_index.length; j++) {
+				if (selected_topic_index.at(i) == neutral_selection_index.at(j)) {
+					result.push(selected_topic_index.at(i));
+				}
 			}
-		});
+		}
 		console.log("result: ", result);
 		
-		result = result.filter((x) => x.length != 0);
+		// result = result.filter((x) => x.length != 0);
 		console.log("result: ", result);
 		
 		// Select a valid index value
