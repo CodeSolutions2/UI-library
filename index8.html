@@ -19,23 +19,6 @@
 	
 <div id="display_UI"></div>
 
-<!--
-<div class="tabs tab-left" id="tabs_container">
-  <nav>
-    <a class="tabs-nav-link active" href="#" id="tabs_Main">Main</a>
-    <a class="tabs-nav-link" href="#" id="tabs_About">About</a>
-  </nav>
-  <div class="content-container" id="tabs_content_Main">
-    <h1 class="content-title" id="tabs_content_title_Main">Main Title</h1>
-    <p class="content-text" id="tabs_content_text_Main">Main Text</p>
-  </div>
-  <div class="content-container" id="tabs_content_About">
-    <h1 class="content-title" id="tabs_content_title_About">About Title</h1>
-    <p class="content-text" id="tabs_content_text_About">About Text</p>
-  </div>
-</div>
- -->
-
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -46,6 +29,7 @@ body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; backgrou
 
 /* color = text color, background = sets multiple background properties at once, including background-color,  background-color = background color, #32557f = dark blue, #fff = white */
 .content-container { 
+	position: absolute;
 	min-width: 600px; 
 	max-width: 600px; 
 	display: block; 
@@ -61,7 +45,8 @@ nav { position: relative; z-index: 1; }
 
 nav a { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
 
-nav a::before { border: .2em solid #fff; content: '';
+nav a::before { border: .2em solid #fff; 
+	       content: '';
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
     z-index: -1;
@@ -226,24 +211,6 @@ async function tabs_addEventListener(i, tab_num) {
 		}
 	});
 }
-
-// -----------------------------------------
-
-/* 
-document.getElementById("tabs_About").addEventListener("click", async () => {
-	
-	// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
-	// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
-  
-	document.getElementById("tabs_Main").classList.add('active');
-  document.getElementById("tabs_About").classList.remove('active');
-	
-	document.getElementById("tabs_content_Main").style.display = "none";
-
-	document.getElementById("tabs_content_About").style.display = "block";
-  
-});
-*/
 
 // -----------------------------------------
 	
