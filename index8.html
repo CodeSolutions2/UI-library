@@ -32,14 +32,13 @@
 
 div#tabs_content_Main{ display: block; }
 div#tabs_content_About{ display: none; }
-	
+
+/* #ebebeb = light gray */
 body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; background: #ebebeb; }
 
 .tabs { margin-bottom: 30px; }
 
-/* nav */
-
-/* color = text color, background = background-color = background color */
+/* color = text color, background = background-color = background color, #32557f = dark blue, #fff = white */
 .content-container { 
 	min-width: 600px; 
 	max-width: 600px; 
@@ -52,6 +51,7 @@ body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; backgrou
 	color: #fff;
 }
 
+/* #7eb4e2 = light blue, #fff = white */
 nav { position: relative; z-index: 1;
   & > a {
     position: relative;
@@ -76,6 +76,7 @@ nav { position: relative; z-index: 1;
   }
 }
 
+/* #32557f = dark blue */
 nav a.active { z-index: 2;
   &::before {
     background-color: #32557f;
@@ -98,6 +99,7 @@ nav a.active { z-index: 2;
   nav a::before { transform-origin: bottom; }
 }
 
+/* #32557f = dark blue, #fff = white */
 .tab-round {
   nav { padding-left: .3em; }
   nav a {
@@ -109,11 +111,8 @@ nav a.active { z-index: 2;
     height: 100px;
     margin-right: 1px;
   }
-
   nav a::before { background-color: none; margin-bottom: 0; }
-
   nav a.active{ background: #fff; color: #000; }
-
   .content-container{
     position: absolute;
     width: 450px;
@@ -127,30 +126,8 @@ nav a.active { z-index: 2;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
     padding: 30px;
   }
-
-/* To delete previous styles: */
-
-  a::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    z-index: -1;
-    border-bottom: none;
-    border-radius: none;
-    background: none;
-    transform: none;
-  }
-
-  nav > a::before { border: none; }
-
-  nav a.active { &::before {
-      background-color: #fff;
-      margin-bottom: 0;
-      border-radius: 30px;
-    }
-  }
-	
 }
+
 </style>
   
 <script>
