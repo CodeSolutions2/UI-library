@@ -3,59 +3,48 @@
 <head></head>
 <body>
 
-<div class="tabs tab-round" id="Main">
+<!-- container -->
+<div class="tabs tab-round" id="tabs_container">
+
+  <!-- tabs -->
   <nav>
-    <a href="#content1">Tab1</a>
-    <a href="#content2">Tab2</a>
-    <a href="#content3">Tab3</a>
+    <a class="nav-link active" href="#" id="Main">Main</a>
+    <a class="nav-link" href="#" id="About">About</a>
   </nav>
-  <div class="content" id="content1">Content1</div>
-  <div class="content" id="content2">Content2</div>
-  <div class="content" id="content3">Content3</div>
+
+  <!-- content under each tab -->
+  <div class="content-container" id="content_Main">
+    <h1 class="content-title" id="content_Main_title">Main Title</h1>
+    <p class="content-text" id="content_Main_text">Main Text</p>
+  </div>
+  
+  <div class="content-container" id="content_About">
+    <h1 class="content-title" id="content_About_title">About Title</h1>
+    <p class="content-text" id="content_About_text">About Text</p>
+  </div>
+  
 </div>
 
-<div class="tabs tab-round" id="About">
-  <nav>
-    <a href="#content1">Tab1</a>
-    <a href="#content2">Tab2</a>
-    <a href="#content3">Tab3</a>
-  </nav>
-  <div class="content" id="content1">Content1</div>
-  <div class="content" id="content2">Content2</div>
-  <div class="content" id="content3">Content3</div>
-</div>
 
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Lato', sans-serif;
-  font-size: 14px;
-  padding: 70px;
-  background: #f69ec4;
-}
+body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; background: #ebebeb; }
 
 .tabs { margin-bottom: 30px; }
 
-nav, .content { min-width: 600px; }
+nav
 
-.content {
-  max-width: 600px;
-  display: block;
+.content-container { min-width: 600px; max-width: 600px; display: block;
   margin-bottom: 1em;
   background: #32557f;
   padding: 2em 3em;
   border-radius: .15em;
   border: .2em solid #fff;
-  color: #fff;
-}
+  color: #fff; }
 
-nav {
-  position: relative;
-  z-index: 1;
-
+nav { position: relative; z-index: 1;
   & > a {
     position: relative;
     width: 10em;
@@ -63,8 +52,7 @@ nav {
     padding: .7em 2em .5em;
     color: #fff;
     text-decoration: none;
-    margin: 0 -.3em;
-  }
+    margin: 0 -.3em; }
 
   & > a::before {
     border: .2em solid #fff;
@@ -128,7 +116,7 @@ nav a.active {
     color: #000;
   }
 
-  .content{
+  .content-container{
     position: absolute;
     width: 450px;
     height: auto;
