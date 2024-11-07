@@ -16,6 +16,7 @@
 <input id="tab_num" type="text" wrap="hard" value="" placeholder="Enter the number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;">
 
 <button id="construct_DOM_elements" onclick='construct_DOM_elements()'>construct_DOM_elements</button>
+<button id="construct_DOM_elements_w_strings" onclick='construct_DOM_elements_w_strings()'>construct_DOM_elements_w_strings</button>
 	
 <div id="display_UI"></div>
 
@@ -133,6 +134,34 @@ async function processEvent_dropdown_options(event) {
 document.getElementById("dropdown_options").addEventListener("change", processEvent_dropdown_options, false);
 
 // -----------------------------------------
+
+async function construct_DOM_elements_w_strings() {
+
+	 const htmlString = `<div class="tabs ${tabs_container_class}" id="tabs_container">
+  <nav>
+    <a class="tabs-nav-link active" href="#" id="tabs_Main">Main</a>
+    <a class="tabs-nav-link" href="#" id="tabs_About">About</a>
+  </nav>
+  <div class="content-container" id="tabs_content_Main">
+    <h1 class="content-title" id="tabs_content_title_Main">Main Title</h1>
+    <p class="content-text" id="tabs_content_text_Main">Main Text</p>
+  </div>
+  <div class="content-container" id="tabs_content_About">
+    <h1 class="content-title" id="tabs_content_title_About">About Title</h1>
+    <p class="content-text" id="tabs_content_text_About">About Text</p>
+  </div>
+</div>`;
+
+
+	// Insert nav strings
+
+
+	
+
+var htmlNode = document.createRange().createContextualFragment(htmlString);
+document.getElementById('display_UI').appendChild(htmlNode);
+}
+
 	
 async function construct_DOM_elements() {
 	
