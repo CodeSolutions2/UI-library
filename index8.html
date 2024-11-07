@@ -181,9 +181,9 @@ async function construct_DOM_elements() {
 	document.body.appendChild(divElement_tabs_container);
 
 	// Dynamically create addEventListener for each `tabs_${i}`.
-	// for (let i=0; i<tab_num; i++) {
-	// 	await tabs_addEventListener(i, tab_num);
-	// }
+	for (let i=0; i<tab_num; i++) {
+		await tabs_addEventListener(i, tab_num);
+	}
 
 	console.log("tabs_container DOM elements: ", document.getElementById('tabs_container'));
 }
