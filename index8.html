@@ -3,29 +3,38 @@
 <head></head>
 <body>
 
-<!-- container -->
-<div class="tabs tab-left" id="tabs_container">
+<!-- Drop down menu: put in body -->
+<label for="select_dropdown_option_label">Select a drop down option:</label>
+<select name="dropdown_options" id="dropdown_options" style="display:block">
+  <option value="---">Select an option</option>
+  <option value="tabs_left">tabs_left</option>
+  <option value="tabs_right">tabs_right</option>
+  <option value="tabs_left_right">tabs_left_right</option>
+  <option value="tabs_round">tabs_round</option>
+</select>
 
-  <!-- tabs -->
+<input id="tab_num" type="text" wrap="hard" value="" placeholder="Enter the number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 30px; word-wrap: break-word; word-break: break-all;">
+
+<button id="construct_DOM_elements" onclick='construct_DOM_elements()'>construct_DOM_elements</button>
+	
+<div id="display_UI"></div>
+
+<!--
+<div class="tabs tab-left" id="tabs_container">
   <nav>
     <a class="tabs-nav-link active" href="#" id="tabs_Main">Main</a>
     <a class="tabs-nav-link" href="#" id="tabs_About">About</a>
   </nav>
-
-  <!-- content under each tab -->
   <div class="content-container" id="tabs_content_Main">
     <h1 class="content-title" id="tabs_content_title_Main">Main Title</h1>
     <p class="content-text" id="tabs_content_text_Main">Main Text</p>
   </div>
-  
   <div class="content-container" id="tabs_content_About">
     <h1 class="content-title" id="tabs_content_title_About">About Title</h1>
     <p class="content-text" id="tabs_content_text_About">About Text</p>
   </div>
-  
 </div>
-
-
+ -->
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -120,7 +129,78 @@ nav a.active { z-index: 2;
 </style>
   
 <script>
+var tabs_container_class;
+	
+async function processEvent_dropdown_options(event) {
 
+	const element = document.getElementById("dropdown_options");
+	console.log('element.selectedIndex: ', element.selectedIndex);
+	
+	if (document.getElementById("dropdown_options").selectedIndex == 1) {
+		tabs_container_class = "tabs tab-left";
+	} (document.getElementById("dropdown_options").selectedIndex == 2) {
+		tabs_container_class = "tabs tab-right";
+	} (document.getElementById("dropdown_options").selectedIndex == 3) {
+		tabs_container_class = "tab-left-right";
+	} (document.getElementById("dropdown_options").selectedIndex == 4) {
+		tabs_container_class = "tab-round";
+	}
+
+	document.getElementById("tab_num").style.display = 'block';
+}
+
+document.getElementById("dropdown_options").addEventListener("change", processEvent_dropdown_options, false);
+
+// -----------------------------------------
+	
+async function construct_DOM_elements(tabs_container_class, tab_num) {
+	
+	const tab_num = document.getElementById("tab_num").value;
+	
+	// Create container
+	var divElement_tabs_container = document.createElement("div");
+	divElement_tabs_container.class = tabs_container_class;
+	divElement_tabs_container.id = "tabs_container";
+
+	// Create tabs
+	var navElement = document.createElement("nav");
+	for (let i=0; i<tab_num; i++) {
+		var aElement = document.createElement("a");
+		aElement.class = i == 0 ? `${tabs_container_class} active` : tabs_container_class;
+		aElement.href = "#";
+		aElement.id = `tabs_${i}`;
+	 	aElement.value = `Tab ${i}`;
+		navElement.appendChild(aElement);
+	}
+	divElement_tabs_container.appendChild(navElement);
+	
+	// Create content under each tab
+	for (let i=0; i<tab_num; i++) {
+		var divElement = document.createElement("div");
+		divElement.class = "content-container";
+		divElement.id = `tabs_content_${i}`;
+
+		var h1Element = document.createElement("h1");
+		h1Element.class = "content-title";
+		h1Element.id = `tabs_content_title_${i}`;
+	 	h1Element.value = `Title ${i}`;
+		
+		divElement.appendChild(h1Element);
+
+		var pElement = document.createElement("p");
+		pElement.class = "content-text";
+		pElement.id = `tabs_content_text_${i}`;
+	 	pElement.value = `Text ${i}`;
+
+		divElement.appendChild(pElement);
+		divElement_tabs_container.appendChild(divElement);
+	}
+	
+	document.getElementById("display_UI").appendChild(divElement_tabs_container);
+}
+
+
+	
 // -----------------------------------------
   
 document.getElementById("tabs_Main").addEventListener("click", async () => {
