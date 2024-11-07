@@ -129,6 +129,9 @@ nav a.active { z-index: 2;
   }
   /* To make tabs round */
   a::before { border-radius: none; background: none; transform: none; }
+  /* removes the outline [without round edges] around the selected tab */
+  nav > a::before { border: none; }
+  /* makes the non-selected tab white, removes the outline without round edges around non-selected tab */
   nav a.active { &::before { background-color: #fff; margin-bottom: 0; border-radius: 30px; }
 }
 
