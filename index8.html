@@ -51,23 +51,12 @@ body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; backgrou
 	color: #fff;
 }
 
-/* #7eb4e2 = light blue, #fff = white */
-/* & > a refers to the node_c element <a> within the node_p element. It is equivalent to "nav a { }". */
-nav { position: relative; z-index: 1;
-  & > a {
-    position: relative;
-    width: 10em;
-    display: inline-block;
-    padding: .7em 2em .5em;
-    color: #fff;
-    text-decoration: none;
-    margin: 0 -.3em; }
 
-  & > a::before { border: .2em solid #fff; }
-  /* Transform inserts a background before the tabs "<a>". */
-  /* `a::before` is a pseudo-element that allows you to insert content before the content of an "<a>" element. */
-  a::before {
-    content: '';
+
+/* OR */
+nav { position: relative; z-index: 1; }
+nav a { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
+nav a::before { border: .2em solid #fff; content: '';
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
     z-index: -1;
@@ -75,16 +64,12 @@ nav { position: relative; z-index: 1;
     border-radius: .4em .4em 0 0;
     background: #7eb4e2;
     /* transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg); */
-  }
 }
 
 /* #32557f = dark blue */
-/* &::before refers to the node_p element before any content is inserted */
+/* &::before refers to the node_p element before any content is inserted  So, nav when a is active should have a certain background-color and margin-bottom. */
 nav a.active { z-index: 2;
-  &::before {
-    background-color: #32557f;
-    margin-bottom: -.08em;
-  }
+  &::before { background-color: #32557f; margin-bottom: -.08em; }
 }
 
 .tab-right {
@@ -92,12 +77,13 @@ nav a.active { z-index: 2;
   nav a::before { transform-origin: bottom right; }
 }
 
+	
 .tab-left {
   nav { padding-left: .3em; }
   nav a::before { transform-origin: bottom left; }
 }
 
-/* Tabs with trapezoidal edges: #32557f = dark blue, #fff = white */
+/* Tabs shifted to the right: #32557f = dark blue, #fff = white */
 .tab-left-right {
   nav { padding-left: 1.3em; }
   nav a::before { transform-origin: bottom; }
@@ -131,9 +117,6 @@ nav a.active { z-index: 2;
     padding: 30px;
   }
 }
-
-	
-
 </style>
   
 <script>
