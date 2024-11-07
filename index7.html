@@ -15,14 +15,15 @@ canvas {border: 1px solid black; position: absolute; display: inline-block; z-in
 </style>
 
 
+<script>var exports = {"__esModule": true};</script>
+	
 <!-- Way 0 -->
-<script src="https://cdn.jsdelivr.net/npm/@google-cloud/storage@7.14.0/build/cjs/src/index.min.js">var exports = {"__esModule": true};</script>
+<script src="https://cdn.jsdelivr.net/npm/@google-cloud/storage@7.14.0/build/cjs/src/index.min.js"></script>
 
 <!-- Way 1 -->
 <script type="module" crossorigin="*" redirect="follow" mode="cors">
 import { Storage } from "https://cdn.jsdelivr.net/npm/@google-cloud/storage@7.14.0/build/cjs/src/index.min.js";
 module1.Storage = Storage;
-var exports = {"__esModule": true};
 </script>
   
 <script>
