@@ -138,11 +138,11 @@ async function processEvent_dropdown_options(event) {
 	
 	if (document.getElementById("dropdown_options").selectedIndex == 1) {
 		tabs_container_class = "tabs tab-left";
-	} (document.getElementById("dropdown_options").selectedIndex == 2) {
+	} else if (document.getElementById("dropdown_options").selectedIndex == 2) {
 		tabs_container_class = "tabs tab-right";
-	} (document.getElementById("dropdown_options").selectedIndex == 3) {
+	} else if (document.getElementById("dropdown_options").selectedIndex == 3) {
 		tabs_container_class = "tab-left-right";
-	} (document.getElementById("dropdown_options").selectedIndex == 4) {
+	} else if (document.getElementById("dropdown_options").selectedIndex == 4) {
 		tabs_container_class = "tab-round";
 	}
 
@@ -171,6 +171,9 @@ async function construct_DOM_elements(tabs_container_class, tab_num) {
 		aElement.id = `tabs_${i}`;
 	 	aElement.value = `Tab ${i}`;
 		navElement.appendChild(aElement);
+
+		// Dynamically create addEventListener for each `tabs_${i}`.
+		await tabs_addEventListener(i, tab_num);
 	}
 	divElement_tabs_container.appendChild(navElement);
 	
@@ -202,23 +205,30 @@ async function construct_DOM_elements(tabs_container_class, tab_num) {
 
 	
 // -----------------------------------------
-  
-document.getElementById("tabs_Main").addEventListener("click", async () => {
 
-	// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
-	// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
+async function tabs_addEventListener(i, tab_num) {
 	
-	document.getElementById("tabs_Main").classList.remove('active');
-	document.getElementById("tabs_About").classList.add('active');
-	
-	document.getElementById("tabs_content_Main").style.display = "block";
+	document.getElementById(`tabs_${i}`).addEventListener("click", async () => {
+		// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
+		// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
 
-	document.getElementById("tabs_content_About").style.display = "none";
-  
-});
+		for (let j=0; j<tab_num; j++) {
+			if (i == j) {
+				// Only add to "tabs_i"
+				document.getElementById(`tabs_${j}`).classList.add('active');
+				document.getElementById(`tabs_content_${j}`).style.display = "block";
+			} else {
+				// Remove from all "tabs_j"
+				document.getElementById(`tabs_${j}`).classList.remove('active');
+				document.getElementById(`tabs_content_${j}`).style.display = "none";
+			}
+		}
+	});
+}
 
 // -----------------------------------------
-  
+
+/* 
 document.getElementById("tabs_About").addEventListener("click", async () => {
 	
 	// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
@@ -232,6 +242,7 @@ document.getElementById("tabs_About").addEventListener("click", async () => {
 	document.getElementById("tabs_content_About").style.display = "block";
   
 });
+*/
 
 // -----------------------------------------
 	
