@@ -42,7 +42,7 @@
 /* #ebebeb = light gray */
 body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; background: #ebebeb; }
 
-.tabs { margin-bottom: 30px; }
+.tabs { display: block; margin-bottom: 30px; }
 
 /* color = text color, background = sets multiple background properties at once, including background-color,  background-color = background color, #32557f = dark blue, #fff = white */
 .content-container { 
@@ -199,8 +199,6 @@ async function construct_DOM_elements() {
 	// for (let i=0; i<tab_num; i++) {
 	// 	await tabs_addEventListener(i, tab_num);
 	// }
-	
-	console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
 
 	console.log("tabs_container DOM elements: ", document.getElementById('tabs_container'));
 }
