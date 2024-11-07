@@ -199,6 +199,10 @@ async function construct_DOM_elements() {
 	for (let i=0; i<tab_num; i++) {
 		await tabs_addEventListener(i, tab_num);
 	}
+	
+	console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
+
+	console.log("tabs_container DOM elements: ", document.getElementById('tabs_container'));
 }
 
 
