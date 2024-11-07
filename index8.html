@@ -72,20 +72,21 @@ nav a.active { z-index: 2;
   &::before { background-color: #32557f; margin-bottom: -.08em; }
 }
 
+/* border-radius: top-left | top-right | bottom-right | bottom-left */
 .tab-right {
   nav { padding-left: 0px; }
-  nav a { padding: 10px 20px; border-radius: 0 5px 0 0; }
+  nav a { border-radius: 0 5px 0 0; }
 }
 
 .tab-left {
   nav { padding-left: 5px; }
-  nav a { padding: 10px 20px; border-radius: 5px 0 0 0; }
+  nav a { border-radius: 5px 0 0 0; }
 }
 
 /* Tabs shifted to the right: #32557f = dark blue, #fff = white */
 .tab-left-right {
   nav { padding-left: 5px; }
-  nav a { padding: 10px 20px; border-radius: 5px 5px 0 0; }
+  nav a { border-radius: 5px 5px 0 0; }
 }
 
 /* Tabs with round edges: #32557f = dark blue, #fff = white */
