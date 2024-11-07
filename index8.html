@@ -142,7 +142,7 @@ async function construct_DOM_elements_w_strings() {
 	// Create tabs
 	var aElement = "";
 	for (let i=0; i<tab_num; i++) {
-		var aElement_class = i == 0 ? `${tabs_container_class} active` : tabs_container_class;
+		var aElement_class = i == 0 ? "tabs-nav-link active" : "tabs-nav-link";
 		aElement = aElement + `<a class=${aElement_class} href="#" id="tabs_${i}">Tab ${i}</a>`;
 	}
 
@@ -174,6 +174,21 @@ async function construct_DOM_elements_w_strings() {
 
 */
 
+	const htmlString = `<div class="tabs ${tabs_container_class}" id="tabs_container">
+  <nav>
+    <a class="tabs-nav-link active" href="#" id="tabs_Main">Main</a>
+    <a class="tabs-nav-link" href="#" id="tabs_About">About</a>
+  </nav>
+  <div class="content-container" id="tabs_content_Main">
+    <h1 class="content-title" id="tabs_content_title_Main">Main Title</h1>
+    <p class="content-text" id="tabs_content_text_Main">Main Text</p>
+  </div>
+  <div class="content-container" id="tabs_content_About">
+    <h1 class="content-title" id="tabs_content_title_About">About Title</h1>
+    <p class="content-text" id="tabs_content_text_About">About Text</p>
+  </div>
+</div>`;
+
 	 var htmlNode = document.createRange().createContextualFragment(htmlString);
 	 document.getElementById('display_UI').appendChild(htmlNode);
 }
@@ -192,7 +207,7 @@ async function construct_DOM_elements() {
 	var navElement = document.createElement("nav");
 	for (let i=0; i<tab_num; i++) {
 		var aElement = document.createElement("a");
-		aElement.class = i == 0 ? `${tabs_container_class} active` : tabs_container_class;
+		aElement.class = i == 0 ? "tabs-nav-link active" : "tabs-nav-link";
 		aElement.href = "#";
 		aElement.id = `tabs_${i}`;
 	 	aElement.value = `Tab ${i}`;
