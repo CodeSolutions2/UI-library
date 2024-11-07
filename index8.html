@@ -31,6 +31,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 div#tabs_content_Main{ display: block; }
+
 div#tabs_content_About{ display: none; }
 
 /* #ebebeb = light gray */
@@ -51,11 +52,10 @@ body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; backgrou
 	color: #fff;
 }
 
-
-
-/* OR */
 nav { position: relative; z-index: 1; }
+
 nav a { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
+
 nav a::before { border: .2em solid #fff; content: '';
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
@@ -63,7 +63,7 @@ nav a::before { border: .2em solid #fff; content: '';
     border-bottom: none;
     border-radius: .4em .4em 0 0;
     background: #7eb4e2;
-    /* transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg); */
+    transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
 }
 
 /* #32557f = dark blue */
@@ -74,10 +74,13 @@ nav a.active { z-index: 2;
 
 .tab-right {
   nav { padding-left: 2.3em; }
-  nav a::before { transform-origin: bottom right; }
+  /* nav a::before { transform-origin: bottom right; } */
+  /* OR */
+  /* nav a::before { padding: 10px 20px; border-radius: 5px 5px 0 0; } */
+  /* OR */
+  nav a { padding: 10px 20px; border-radius: 5px 5px 0 0; }
 }
 
-	
 .tab-left {
   nav { padding-left: .3em; }
   nav a::before { transform-origin: bottom left; }
