@@ -38,7 +38,7 @@ body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; backgrou
 
 .tabs { margin-bottom: 30px; }
 
-/* color = text color, background = background-color = background color, #32557f = dark blue, #fff = white */
+/* color = text color, background = sets multiple background properties at once, including background-color,  background-color = background color, #32557f = dark blue, #fff = white */
 .content-container { 
 	min-width: 600px; 
 	max-width: 600px; 
@@ -112,7 +112,8 @@ nav a.active { z-index: 2;
     height: 100px;
     margin-right: 1px;
   }
-  nav a::before { background-color: none; margin-bottom: 0; }
+  /* nav a::before { background-color: none; margin-bottom: 0; border-radius: none; background: none; transform: none; } */
+  nav a::before { margin-bottom: 0; border-radius: none; background: none; transform: none; }
   nav a.active{ background: #fff; color: #000; }
   .content-container{
     position: absolute;
@@ -127,8 +128,8 @@ nav a.active { z-index: 2;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
     padding: 30px;
   }
-  /* To make tabs round */
-  a::before { border-radius: none; background: none; transform: none; }
+  /* Removes errors make tabs round */
+  /* a::before { border-radius: none; background: none; transform: none; } */
   /* removes the outline [without round edges] around the selected tab */
   nav > a::before { border: none; }
   /* makes the non-selected tab white, removes the outline without round edges around non-selected tab */
@@ -144,7 +145,7 @@ nav a.active { z-index: 2;
 document.getElementById("tabs_Main").addEventListener("click", async () => {
 
 	// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
-	console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
+	// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
 	
 	document.getElementById("tabs_Main").classList.remove('active');
 	document.getElementById("tabs_About").classList.add('active');
@@ -160,7 +161,7 @@ document.getElementById("tabs_Main").addEventListener("click", async () => {
 document.getElementById("tabs_About").addEventListener("click", async () => {
 	
 	// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
-	console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
+	// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
   
 	document.getElementById("tabs_Main").classList.add('active');
   document.getElementById("tabs_About").classList.remove('active');
