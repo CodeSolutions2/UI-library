@@ -172,7 +172,6 @@ async function construct_DOM_elements_w_strings() {
 		  <div class="content-container" id="tabs_content_0"><h1 class="content-title" id="tabs_content_title_0">Title 0</h1><p class="content-text" id="tabs_content_text_0">Text 0</p></div><div class="content-container" id="tabs_content_1"><h1 class="content-title" id="tabs_content_title_1">Title 1</h1><p class="content-text" id="tabs_content_text_1">Text 1</p></div>
 		</div>
 
-*/
 
 	const htmlString = `<div class="tabs ${tabs_container_class}" id="tabs_container">
   <nav>
@@ -188,6 +187,9 @@ async function construct_DOM_elements_w_strings() {
     <p class="content-text" id="tabs_content_text_About">About Text</p>
   </div>
 </div>`;
+
+
+*/
 
 	 var htmlNode = document.createRange().createContextualFragment(htmlString);
 	 document.getElementById('display_UI').appendChild(htmlNode);
