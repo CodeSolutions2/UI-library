@@ -39,10 +39,6 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-div#tabs_content_Main{ display: block; }
-
-div#tabs_content_About{ display: none; }
-
 /* #ebebeb = light gray */
 body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; background: #ebebeb; }
 
@@ -196,8 +192,8 @@ async function construct_DOM_elements() {
 		divElement_tabs_container.appendChild(divElement);
 	}
 	
-	document.getElementById("display_UI").appendChild(divElement_tabs_container);
-
+	// document.getElementById("display_UI").appendChild(divElement_tabs_container);
+	document.body.appendChild(divElement_tabs_container);
 
 	// Dynamically create addEventListener for each `tabs_${i}`.
 	for (let i=0; i<tab_num; i++) {
@@ -251,7 +247,7 @@ document.getElementById("tabs_About").addEventListener("click", async () => {
 	
 window.addEventListener('beforeunload', function() {
 	window.location.href = window.location.href + '?nocache=' + new Date().getTime();
-	// document.getElementById("dropdown_options").selectedIndex = 0;
+	document.getElementById("dropdown_options").selectedIndex = 0;
 });
 
 // -------------------------------------------------
