@@ -137,29 +137,35 @@ document.getElementById("dropdown_options").addEventListener("change", processEv
 
 async function construct_DOM_elements_w_strings() {
 
-	 const htmlString = `<div class="tabs ${tabs_container_class}" id="tabs_container">
-  <nav>
-    <a class="tabs-nav-link active" href="#" id="tabs_Main">Main</a>
-    <a class="tabs-nav-link" href="#" id="tabs_About">About</a>
-  </nav>
-  <div class="content-container" id="tabs_content_Main">
-    <h1 class="content-title" id="tabs_content_title_Main">Main Title</h1>
-    <p class="content-text" id="tabs_content_text_Main">Main Text</p>
-  </div>
-  <div class="content-container" id="tabs_content_About">
-    <h1 class="content-title" id="tabs_content_title_About">About Title</h1>
-    <p class="content-text" id="tabs_content_text_About">About Text</p>
-  </div>
-</div>`;
+	const tab_num = document.getElementById("tab_num").value;
 
+	// Create tabs
+	var aElement = "";
+	for (let i=0; i<tab_num; i++) {
+		var aElement_class = i == 0 ? `${tabs_container_class} active` : tabs_container_class;
+		aElement = aElement + `<a class=${aElement_class} href="#" id="tabs_${i}">Tab ${i}</a>`;
+	}
 
-	// Insert nav strings
-
-
+	// Create content under each tab
+	var divElement = "";
+	var h1Element = "";
+	var pElement = "";
+	for (let i=0; i<tab_num; i++) {
+		h1Element = `<h1 class="content-title" id="tabs_content_title_${i}">Title ${i}</h1>`;
+		pElement = `<p class="content-text" id="tabs_content_text_${i}">Text ${i}</p>`;
+		divElement = divElement + `<div class="content-container" id="tabs_content_${i}">` + h1Element + pElement + "</div>";
+	}
 	
+	 const htmlString = `<div class="tabs ${tabs_container_class}" id="tabs_container">
+		  <nav>
+		    ${aElement}
+		  </nav>
+		  ${divElement}
+		</div>`;
+	console.log("htmlString: ", htmlString);
 
-var htmlNode = document.createRange().createContextualFragment(htmlString);
-document.getElementById('display_UI').appendChild(htmlNode);
+	 var htmlNode = document.createRange().createContextualFragment(htmlString);
+	 document.getElementById('display_UI').appendChild(htmlNode);
 }
 
 	
