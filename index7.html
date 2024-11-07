@@ -3,6 +3,7 @@
 <head></head>
 <body>
 
+<input id="OPENAI_API_KEY" type="text" value="" placeholder="OPENAI_API_KEY" rows="10" cols="100" style="display:block; text-align: left; width: 150px;">
 <canvas id="canvas_img" width="224" height="224" style="display:block"></canvas>
   
 <button id="run_function" onclick="run_function()">run_function</button>
@@ -24,7 +25,7 @@ module1.Storage = Storage;
 </script>
   
 <script>
-
+var exports = {"__esModule": true};
 // --------------------------------------
   
 async function try_to_use_nodejs_library_way0() {
