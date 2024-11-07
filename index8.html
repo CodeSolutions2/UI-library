@@ -128,7 +128,8 @@ nav a.active { z-index: 2;
     padding: 30px;
   }
   /* To make tabs round */
-  a::before { border-radius: none; background: none; }
+  a::before { border-radius: none; background: none; transform: none; }
+  nav a.active { &::before { background-color: #fff; margin-bottom: 0; border-radius: 30px; }
 }
 
 </style>
