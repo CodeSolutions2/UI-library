@@ -13,7 +13,7 @@
   <option value="tabs_round">tabs_round</option>
 </select>
 
-<input id="tab_num" type="text" wrap="hard" value="" placeholder="Enter the number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 30px; word-wrap: break-word; word-break: break-all;">
+<input id="tab_num" type="text" wrap="hard" value="" placeholder="Enter the number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;">
 
 <button id="construct_DOM_elements" onclick='construct_DOM_elements()'>construct_DOM_elements</button>
 	
@@ -171,9 +171,6 @@ async function construct_DOM_elements() {
 		aElement.id = `tabs_${i}`;
 	 	aElement.value = `Tab ${i}`;
 		navElement.appendChild(aElement);
-
-		// Dynamically create addEventListener for each `tabs_${i}`.
-		await tabs_addEventListener(i, tab_num);
 	}
 	divElement_tabs_container.appendChild(navElement);
 	
@@ -200,6 +197,12 @@ async function construct_DOM_elements() {
 	}
 	
 	document.getElementById("display_UI").appendChild(divElement_tabs_container);
+
+
+	// Dynamically create addEventListener for each `tabs_${i}`.
+	for (let i=0; i<tab_num; i++) {
+		await tabs_addEventListener(i, tab_num);
+	}
 }
 
 
