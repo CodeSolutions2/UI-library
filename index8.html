@@ -94,12 +94,13 @@ nav a.active { z-index: 2;
   nav a::before { transform-origin: bottom left; }
 }
 
+/* Tabs with round edges: #32557f = dark blue, #fff = white */
 .tab-left-right {
   nav { padding-left: 1.3em; }
   nav a::before { transform-origin: bottom; }
 }
 
-/* #32557f = dark blue, #fff = white */
+/* Tabs with round edges: #32557f = dark blue, #fff = white */
 .tab-round {
   nav { padding-left: .3em; }
   nav a {
@@ -126,6 +127,8 @@ nav a.active { z-index: 2;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
     padding: 30px;
   }
+  /* To make tabs round */
+  a::before { border-radius: none; background: none; }
 }
 
 </style>
