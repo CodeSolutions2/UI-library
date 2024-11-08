@@ -4,20 +4,75 @@
 <body>
 
 <!-- Webapp interface to use the UI_library. -->
-	
-<!-- Drop down menu: put in body -->
-<label for="select_dropdown_option_label">Select a drop down option:</label>
-<select name="dropdown_options" id="dropdown_options" style="display:block">
-  <option value="---">Select an option</option>
-  <option value="tab-right-box-shadow">tab-right-box-shadow</option>
-  <option value="tab-right">tab-right</option>
-  <option value="tab-left-box-shadow">tab-left-box-shadow</option>
-  <option value="tab-left">tab-left</option>
-  <option value="tab-round-box-shadow">tab-round-box-shadow</option>
-  <option value="tab-round">tab-round</option>
-</select>
 
-<input id="tab_num" type="text" wrap="hard" value="" placeholder="Enter the number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;">
+<h1>Select the UI_library classes to view:</h1>
+<-- Checkbox Grid -->
+<table>
+  <tr>  
+    <th>dropdown</th>
+    <th>input</th>
+    <th>navbar</th>
+    <th>radio</th>
+    <th>sidebar</th>
+    <th>tabs</th>
+    <th>toggle</th>
+  </tr>
+  <tr>
+    <td>dropdown-basic</td>
+    <td>input-basic</td>
+    <td>navbar-top-left</td>
+    <td>radio-basic</td>
+    <td>sidebar-right</td>
+    <td><div><input type="checkbox" id="tab-right-box-shadow" name="tab-right-box-shadow" checked /><label for="tab-right-box-shadow">tab-right-box-shadow</label></div></td>
+    <td>toggle-box-shadow</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><div><input type="checkbox" id="tab-right" name="tab-right" /><label for="tab-right">tab-right</label></div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><div><input type="checkbox" id="tab-left-box-shadow" name="tab-left-box-shadow" /><label for="tab-left-box-shadow">tab-left-box-shadow</label></div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><div><input type="checkbox" id="tab-left" name="tab-left" /><label for="tab-left">tab-left</label></div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><div><input type="checkbox" id="tab-round-box-shadow" name="tab-round-box-shadow" /><label for="tab-round-box-shadow">tab-round-box-shadow</label></div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><div><input type="checkbox" id="tab-round" name="tab-round" /><label for="tab-round">tab-round</label></div>
+<input id="tab_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
+    <td></td>
+  </tr>
+</table> 
 
 <button id="run_selection" onclick='run_selection()'>run_selection</button>
 	
