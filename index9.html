@@ -225,6 +225,10 @@ async function run_selection() {
 		}
 	}
 
+	if (document.getElementById("toggle-box-shadow").checked == true) {
+		ui_elements = Object.assign({}, ui_elements, {"toggle-box-shadow": 1});
+	}
+
 	// -----------------------------------------
 
 	// View the selections to view from the UI library.
