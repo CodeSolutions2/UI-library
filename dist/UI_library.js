@@ -15,25 +15,25 @@ export async function UI_library(obj) {
 
 			// Detect the type of selected ui to use the correct function.
 			if ((/dropdown/g).test(ui_num.at(i)) == true) {
-				htmlString = htmlString + dropdown_construct_DOM_elements_w_strings();
+				htmlString = htmlString + "<p>dropdown UIs are in progress</p><br>";
 				
 			} else if ((/input/g).test(ui_num.at(i)) == true) {
-				htmlString = htmlString + input_construct_DOM_elements_w_strings();
+				htmlString = htmlString + "<p>input UIs are in progress</p><br>";
 				
 			} else if ((/navbar/g).test(ui_num.at(i)) == true) {
-				htmlString = htmlString + navbar_construct_DOM_elements_w_strings();
+				htmlString = htmlString + "<p>navbar UIs are in progress</p><br>";
 				
 			} else if ((/radio/g).test(ui_num.at(i)) == true) {
-				htmlString = htmlString + radio_construct_DOM_elements_w_strings();
+				htmlString = htmlString + "<p>radio UIs are in progress</p><br>";
 				
 			} else if ((/sidebar/g).test(ui_num.at(i)) == true) {
-				htmlString = htmlString + sidebar_construct_DOM_elements_w_strings();
+				htmlString = htmlString + "<p>sidebar UIs are in progress</p><br>";
 				
 			} else if ((/tab/g).test(ui_num.at(i)) == true) {
 				htmlString = htmlString + tab_construct_DOM_elements_w_strings(key_name, value_name);
 
 			} else if ((/toggle/g).test(ui_num.at(i)) == true) {
-				htmlString = htmlString + toggle_construct_DOM_elements_w_strings();
+				htmlString = htmlString + "<p>toggle UIs are in progress</p><br>";
 			}
 
 			htmlString = htmlString + "<br><br><br><br>";
@@ -70,32 +70,6 @@ export async function UI_library(obj) {
 			  ${divElement}
 			</div>`;
 	}
-
-	// -----------------------------------------
-
-	function tabs_addEventListener(htmlString) {
-	
-		// Just with the htmlString, determine how many eventlisteners are needed 
-		
-		
-		document.getElementById(`tabs_${i}`).addEventListener("click", async () => {
-			// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
-			// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
-	
-			for (let j=0; j<tab_num; j++) {
-				if (i == j) {
-					// Only add to "tabs_i"
-					document.getElementById(`tabs_${j}`).classList.add('active');
-					document.getElementById(`tabs_content_${j}`).style.display = "block";
-				} else {
-					// Remove from all "tabs_j"
-					document.getElementById(`tabs_${j}`).classList.remove('active');
-					document.getElementById(`tabs_content_${j}`).style.display = "none";
-				}
-			}
-		});
-	}
-
 
 	// -----------------------------------------
 	
