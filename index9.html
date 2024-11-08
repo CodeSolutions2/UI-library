@@ -239,12 +239,12 @@ async function run_selection() {
 	
 	// Run selections using UI_library.
 
-	// Way 0
-	// var index_out = module.UI_library(obj).run_multiple_selections(obj);
+	// Way 0: ffunction returns a list of function names in index.js
+	var index_out = await module.UI_library(obj).run_multiple_selections(obj);
 	
-	// Way 1
-	const ffunction = await module.UI_library(obj);
-	var index_out = ffunction.run_multiple_selections(obj);
+	// Way 1: ffunction must return an object in index.js
+	// const ffunction = await module.UI_library(obj);
+	// var index_out = ffunction.run_multiple_selections(obj);
 	
 	console.log("index_out: ", index_out);
 	
