@@ -20,7 +20,16 @@
 
 .tabs-nav { position: relative; z-index: 1; }
 
-.tabs-nav .tabs-nav-link { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
+.tabs-nav .tabs-nav-link { 
+	position: relative;
+	width: 100px; 
+	/* width: 160px; */
+	display: inline-block; 
+	padding: .7em 2em .5em; 
+	color: #fff; 
+	text-decoration: none; 
+	margin: 0 -.3em; 
+}
 
 .tabs-nav .tabs-nav-link::before { 
 	border: .2em solid #fff; 
