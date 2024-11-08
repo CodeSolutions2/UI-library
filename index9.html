@@ -88,8 +88,9 @@ nav a.active { z-index: 2;
 
 .tab-left {
   nav { padding-left: 4.8px; }
-  nav a::before { border-radius: 20px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-  nav a.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 30px; }
+  nav a { border-radius: 20px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
+  nav a::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; }
+  nav a.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 20px 0 0 0; }
 }
 
 /* Tabs shifted to the right: #32557f = dark blue, #fff = white */
