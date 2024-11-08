@@ -3,8 +3,8 @@
 /* color = text color, background = sets multiple background properties at once, including background-color,  background-color = background color, #32557f = dark blue, #fff = white */
 .content-container { 
 	position: absolute;
-	width: 100%;
-	height: auto;
+	min-width: 600px;
+	max-width: 600px;
 	display: block; 
 	margin-bottom: 50px;
 	background: #32557f;
