@@ -240,11 +240,13 @@ async function run_selection() {
 	// Run selections using UI_library.
 
 	// Way 0: ffunction returns a list of function names in index.js
-	var index_out = await module.UI_library(obj).run_multiple_selections(obj);
+	// var index_out = await module.UI_library(obj).run_multiple_selections(obj);
+	// Uncaught (in promise) TypeError: module.UI_library(...).run_multiple_selections is not a function
 	
 	// Way 1: ffunction must return an object in index.js
-	// const ffunction = await module.UI_library(obj);
-	// var index_out = ffunction.run_multiple_selections(obj);
+	const ffunction = await module.UI_library(obj);
+	var index_out = ffunction.run_multiple_selections(obj);
+	// WORKS!
 	
 	console.log("index_out: ", index_out);
 	
