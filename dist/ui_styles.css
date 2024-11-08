@@ -59,13 +59,7 @@
 	
 .tab-right {
 	.tabs-nav { padding-left: 4.8px; }
-	.tabs-nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 50px; margin-right: 5px; }
-	/* align content-container with tabs */
-	.content-container{
-		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
-		margin-bottom: 50px; /* makes the tabs the right height wrt the content-container */
-    		z-index: 100; /* makes the tabs behind the content-container */
-	}
+	.tabs-nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; }
 }
 
 .tab-left-box-shadow {
@@ -89,7 +83,7 @@
 /* Tabs shifted to the right: #32557f = dark blue, #fff = white */
 .tab-left {
 	.tabs-nav { padding-left: 4.8px; }
-	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 50px; margin-right: 5px; }
+	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 75px; margin-right: 5px; }
 	/* align content-container with tabs */
 	.content-container{
 		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
@@ -118,7 +112,7 @@
 
 .tab-round {
 	.tabs-nav { padding-left: 4.8px; }
-	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 50px; margin-right: 1px; }
+	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 75px; margin-right: 1px; }
 	/* align content-container with tabs */
 	.content-container{
 		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
