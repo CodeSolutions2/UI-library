@@ -2,7 +2,7 @@ export async function UI_library(obj) {
 
 	// -----------------------------------------
 	
-	function run_multiple_selections(obj) {
+	function run_multiple_selections0(obj) {
 
 		var ui_num = Object.keys(obj.ui_elements);
 		
@@ -79,5 +79,10 @@ export async function UI_library(obj) {
 
 
 	// return { run_multiple_selections: run_multiple_selections() };
-	return Object.freeze({ run_multiple_selections });
+	// OR
+	// return Object.freeze({ run_multiple_selections });
+	// OR
+	return {
+		run_multiple_selections: function(obj) { return Object.keys(obj.ui_elements); }
+	};
 }
