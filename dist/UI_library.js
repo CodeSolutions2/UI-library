@@ -1,7 +1,7 @@
 export function UI_library(obj) {
 
 
-	function run_multiple_selections(obj) {
+	export function run_multiple_selections(obj) {
 
 		var ui_num = Object.keys(obj.ui_elements);
 		
@@ -15,6 +15,8 @@ export function UI_library(obj) {
 		// }
 
 		// const htmlString_IndexElements = '<!DOCTYPE html><html><head></head><body>'+htmlString+'<link href="./dist/ui_styles.css" rel="stylesheet" integrity="" crossorigin="anonymous"></body></html>';
+
+		return ui_num;
 	}
 
 	
