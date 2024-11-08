@@ -36,6 +36,7 @@ export async function UI_library(obj) {
 				htmlString = htmlString + toggle_construct_DOM_elements_w_strings();
 			}
 
+			htmlString = htmlString + "<br><br><br><br>";
 		}
 
 		return htmlString;
