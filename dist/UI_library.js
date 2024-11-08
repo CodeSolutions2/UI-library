@@ -1,7 +1,9 @@
-export function UI_library(obj) {
+export { UI_library, run_multiple_selections }
 
 
-	export function run_multiple_selections(obj) {
+async function UI_library(obj) {
+	
+	function run_multiple_selections(obj) {
 
 		var ui_num = Object.keys(obj.ui_elements);
 		
