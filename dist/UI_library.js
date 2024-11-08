@@ -76,13 +76,14 @@ export async function UI_library(obj) {
 
 
 	// -----------------------------------------
-
-
+	
 	// return { run_multiple_selections: run_multiple_selections() };
+	// Uncaught (in promise) TypeError: module.UI_library.run_multiple_selections is not a function
 	// OR
 	// return Object.freeze({ run_multiple_selections });
+	// Uncaught (in promise) TypeError: module.UI_library.run_multiple_selections is not a function
 	// OR
-	return {
-		run_multiple_selections: function(obj) { return Object.keys(obj.ui_elements); }
-	};
+	return { run_multiple_selections: function(obj) { return Object.keys(obj.ui_elements); } };
+	
+	// -----------------------------------------
 }
