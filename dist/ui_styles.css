@@ -18,11 +18,11 @@
 
 .content-text { font-family: 'Lato', sans-serif; font-size: 14px; }
 
-nav { position: relative; z-index: 1; }
+.tabs-nav { position: relative; z-index: 1; }
 
-nav .tabs-nav-link { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
+.tabs-nav .tabs-nav-link { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
 
-nav .tabs-nav-link::before { 
+.tabs-nav .tabs-nav-link::before { 
 	border: .2em solid #fff; 
 	content: '';
 	position: absolute;
@@ -36,14 +36,14 @@ nav .tabs-nav-link::before {
 
 /* #32557f = dark blue */
 /* &::before refers to the node_p element before any content is inserted  So, nav when a is active should have a certain background-color and margin-bottom. */
-nav .tabs-nav-link.active { z-index: 2; &::before { background-color: #32557f; margin-bottom: -.08em; } }
+.tabs-nav .tabs-nav-link.active { z-index: 2; &::before { background-color: #32557f; margin-bottom: -.08em; } }
 
 /* border-radius: top-left | top-right | bottom-right | bottom-left */
 .tab-right-box-shadow {
-	nav { padding-left: 4.8px; }
-	nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-	nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
-	nav .tabs-nav-link.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 0 100px 0 0; } /* Changes background and font onclick */
+	.tabs-nav { padding-left: 4.8px; }
+	.tabs-nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
+	.tabs-nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 0 100px 0 0; } /* Changes background and font onclick */
 	/* Changes the content-container area to have a box-shadow and align content-container with tabs */
 	.content-container{
 		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
@@ -58,15 +58,15 @@ nav .tabs-nav-link.active { z-index: 2; &::before { background-color: #32557f; m
 }
 	
 .tab-right {
-	nav { padding-left: 4.8px; }
-	nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
+	.tabs-nav { padding-left: 4.8px; }
+	.tabs-nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
 }
 
 .tab-left-box-shadow {
-	nav { padding-left: 4.8px; }
-	nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-	nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
-	nav .tabs-nav-link.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 100px 0 0 0; } /* Changes background and font onclick */
+	.tabs-nav { padding-left: 4.8px; }
+	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
+	.tabs-nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 100px 0 0 0; } /* Changes background and font onclick */
 	/* Changes the content-container area to have a box-shadow and align content-container with tabs */
 	.content-container{
 		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
@@ -82,16 +82,16 @@ nav .tabs-nav-link.active { z-index: 2; &::before { background-color: #32557f; m
 
 /* Tabs shifted to the right: #32557f = dark blue, #fff = white */
 .tab-left {
-	nav { padding-left: 4.8px; }
-	nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
+	.tabs-nav { padding-left: 4.8px; }
+	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
 }
 
 /* Tabs with round edges: #32557f = dark blue, #fff = white */
 .tab-round-box-shadow {
-	nav { padding-left: 4.8px; }
-	nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 1px; }
-	nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; }
-	nav .tabs-nav-link.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 30px; }
+	.tabs-nav { padding-left: 4.8px; }
+	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 1px; }
+	.tabs-nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; }
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 30px; }
 	.content-container{
     		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
     		margin-bottom: 50px; /* makes the tabs the right height wrt the content-container */
@@ -105,6 +105,6 @@ nav .tabs-nav-link.active { z-index: 2; &::before { background-color: #32557f; m
 }
 
 .tab-round {
-	nav { padding-left: 4.8px; }
-	nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 1px; }
+	.tabs-nav { padding-left: 4.8px; }
+	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 1px; }
 }
