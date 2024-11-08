@@ -19,12 +19,12 @@
     <th>Toggles</th>
   </tr>
   <tr>
-    <td><div><input type="checkbox" id="dropdown-basic" name="dropdown-basic" /><label for="dropdown-basic">dropdown-basic</label></div></td>
-    <td><div><input type="checkbox" id="input-basic" name="input-basic" /><label for="input-basic">input-basic</label></div></td>
+    <td><div><input type="checkbox" id="dropdown-basic" name="dropdown-basic" /><label for="dropdown-basic">dropdown-basic</label></div><input id="dropdown-basic_num" type="text" wrap="hard" value="" placeholder="Number of dropdowns to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
+    <td><div><input type="checkbox" id="input-basic" name="input-basic" /><label for="input-basic">input-basic</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td><div><input type="checkbox" id="navbar-top-left" name="navbar-top-left" /><label for="navbar-top-left">navbar-top-left</label></div></td>
-    <td><div><input type="checkbox" id="radio-basic" name="radio-basic" /><label for="radio-basic">radio-basic</label></div></td>
+    <td><div><input type="checkbox" id="radio-basic" name="radio-basic" /><label for="radio-basic">radio-basic</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td><div><input type="checkbox" id="sidebar-right" name="sidebar-right" /><label for="sidebar-right">sidebar-right</label></div></td>
-    <td><div><input type="checkbox" id="tab-right-box-shadow" name="tab-right-box-shadow" /><label for="tab-right-box-shadow">tab-right-box-shadow</label></div></td>
+    <td><div><input type="checkbox" id="tab-right-box-shadow" name="tab-right-box-shadow" /><label for="tab-right-box-shadow">tab-right-box-shadow</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td><div><input type="checkbox" id="toggle-box-shadow" name="toggle-box-shadow" /><label for="toggle-box-shadow">toggle-box-shadow</label></div></td>
   </tr>
   <tr>
@@ -33,7 +33,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td><div><input type="checkbox" id="tab-right" name="tab-right" /><label for="tab-right">tab-right</label></div></td>
+    <td><div><input type="checkbox" id="tab-right" name="tab-right" /><label for="tab-right">tab-right</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td></td>
   </tr>
   <tr>
@@ -42,7 +42,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td><div><input type="checkbox" id="tab-left-box-shadow" name="tab-left-box-shadow" /><label for="tab-left-box-shadow">tab-left-box-shadow</label></div></td>
+    <td><div><input type="checkbox" id="tab-left-box-shadow" name="tab-left-box-shadow" /><label for="tab-left-box-shadow">tab-left-box-shadow</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td></td>
   </tr>
   <tr>
@@ -51,7 +51,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td><div><input type="checkbox" id="tab-left" name="tab-left" /><label for="tab-left">tab-left</label></div></td>
+    <td><div><input type="checkbox" id="tab-left" name="tab-left" /><label for="tab-left">tab-left</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td></td>
   </tr>
   <tr>
@@ -60,7 +60,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td><div><input type="checkbox" id="tab-round-box-shadow" name="tab-round-box-shadow" /><label for="tab-round-box-shadow">tab-round-box-shadow</label></div></td>
+    <td><div><input type="checkbox" id="tab-round-box-shadow" name="tab-round-box-shadow" /><label for="tab-round-box-shadow">tab-round-box-shadow</label></div><input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td></td>
   </tr>
   <tr>
@@ -70,7 +70,7 @@
     <td></td>
     <td></td>
     <td><div><input type="checkbox" id="tab-round" name="tab-round" /><label for="tab-round">tab-round</label></div>
-<input id="tab_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
+<input id="tab-round_num" type="text" wrap="hard" value="" placeholder="Number of tabs to create" rows="10" cols="100" style="display:block; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;"></td>
     <td></td>
   </tr>
 </table> 
@@ -99,32 +99,11 @@ module.UI_library = UI_library;
 
 
 <script>
-	
-async function processEvent_dropdown_options(event) {
 
-	const element = document.getElementById("dropdown_options");
-	console.log('element.selectedIndex: ', element.selectedIndex);
-	
-	if (document.getElementById("dropdown_options").selectedIndex == 1) {
-		var tabs_container_class = "tabs tab-right-box-shadow";
-	} else if (document.getElementById("dropdown_options").selectedIndex == 2) {
-		var tabs_container_class = "tabs tab-right";
-	} else if (document.getElementById("dropdown_options").selectedIndex == 3) {
-		var tabs_container_class = "tabs tab-left-box-shadow";
-	} else if (document.getElementById("dropdown_options").selectedIndex == 4) {
-		var tabs_container_class = "tabs tab-left";
-	} else if (document.getElementById("dropdown_options").selectedIndex == 5) {
-		var tabs_container_class = "tabs tab-round-box-shadow";
-	} else if (document.getElementById("dropdown_options").selectedIndex == 6) {
-		var tabs_container_class = "tabs tab-round";
-	}
-
-}
-
-document.getElementById("dropdown_options").addEventListener("change", processEvent_dropdown_options, false);
+const module = {};
 
 // -----------------------------------------
-	
+
 window.addEventListener('beforeunload', function() {
 	window.location.href = window.location.href + '?nocache=' + new Date().getTime();
 	document.getElementById("dropdown_options").selectedIndex = 0;
@@ -134,11 +113,113 @@ window.addEventListener('beforeunload', function() {
 
 async function run_selection() {
 
-	// Run selections using UI_library.
-
-
-	document.getElementById("tab_num").style.display = 'block';
+	var obj = {};
 	
+	if (document.getElementById("dropdown-basic").checked == true) {
+		obj = Object.assign({}, obj, {"dropdown-basic": 0});
+	}
+	
+	if (document.getElementById("input-basic").checked == true) {
+		obj = Object.assign({}, obj, {"input-basic": 0});
+	}
+	
+	if (document.getElementById("navbar-top-left").checked == true) {
+		obj = Object.assign({}, obj, {"navbar-top-left": 0});
+	}
+	
+	if (document.getElementById("radio-basic").checked == true) {
+		obj = Object.assign({}, obj, {"radio-basic": 0});
+	}
+	
+	if (document.getElementById("sidebar-right").checked == true) {
+		obj = Object.assign({}, obj, {"sidebar-right": 0});
+	}
+	
+	if (document.getElementById("tab-right-box-shadow").checked == true) {
+		obj = Object.assign({}, obj, {"tabs tab-right-box-shadow": 0});
+	}
+	
+	if (document.getElementById("tab-right").checked == true) {
+		obj = Object.assign({}, obj, {"tabs tab-right": 0});
+	}
+	
+	if (document.getElementById("tab-left-box-shadow").checked == true) {
+		obj = Object.assign({}, obj, {"tabs tab-left-box-shadow": 0});
+	}
+	
+	if (document.getElementById("tab-left").checked == true) {
+		obj = Object.assign({}, obj, {"tabs tab-left": 0});
+	}
+	
+	if (document.getElementById("tab-round-box-shadow").checked == true) {
+		obj = Object.assign({}, obj, {"tabs tab-round-box-shadow": 0});
+	}
+	
+	if (document.getElementById("tab-round").checked == true) {
+		obj = Object.assign({}, obj, {"tabs tab-round": 0});
+	}
+	
+	
+
+	// Obtain the number of UI features.
+	if (document.getElementById("dropdown-basic_num").value.length > 0) {
+		obj["dropdown-basic"] = document.getElementById("dropdown-basic_num").value;
+	}
+	
+	if (document.getElementById("input-basic_num").value.length > 0) {
+		obj["input-basic"] = document.getElementById("input-basic_num").value;
+	}
+	
+	if (document.getElementById("radio-basic_num").value.length > 0) {
+		obj["radio-basic"] = document.getElementById("radio-basic_num").value;
+	}
+	
+	if (document.getElementById("tab-right-box-shadow_num").value.length > 0) {
+		obj["tabs tab-right-box-shadow"] = document.getElementById("tab-right-box-shadow_num").value;
+	}
+	
+	if (document.getElementById("tab-right_num").value.length > 0) {
+		obj["tabs tab-right"] = document.getElementById("tab-right_num").value;
+	}
+	
+	if (document.getElementById("tab-left-box-shadow_num").value.length > 0) {
+		obj["tabs tab-left-box-shadow"] = document.getElementById("tab-left-box-shadow_num").value;
+	}
+	
+	if (document.getElementById("tab-left_num").value.length > 0) {
+		obj["tabs tab-left"] = document.getElementById("tab-left_num").value;
+	}
+	
+	if (document.getElementById("tab-round-box-shadow_num").value.length > 0) {
+		obj["tabs tab-round-box-shadow"] = document.getElementById("tab-round-box-shadow_num").value;
+	}
+	
+	if (document.getElementById("tab-round_num").value.length > 0) {
+		obj["tabs tab-round"] = document.getElementById("tab-round_num").value;
+	}
+
+	// -----------------------------------------
+
+	// View the selections to view from the UI library.
+	console.log("obj: ", obj);
+
+	// -----------------------------------------
+	
+	// Run selections using UI_library.
+	obj.htmlString = module.UI_library.run_multiple_selections(obj);
+
+	// -----------------------------------------
+
+	// Display the UI elements.
+	var htmlNode = document.createRange().createContextualFragment(obj.htmlString);
+	document.getElementById('display_UI').appendChild(htmlNode);
+
+	// -----------------------------------------
+	
+	// Add functionality to UI elements.
+	module.UI_library.tabs_addEventListener(obj);
+
+	// -----------------------------------------
 }
 
 // -------------------------------------------------
