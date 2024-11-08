@@ -3,6 +3,8 @@
 <head></head>
 <body>
 
+<!-- Webapp interface to use the UI_library. -->
+	
 <!-- Drop down menu: put in body -->
 <label for="select_dropdown_option_label">Select a drop down option:</label>
 <select name="dropdown_options" id="dropdown_options" style="display:block">
@@ -17,149 +19,30 @@
 
 <input id="tab_num" type="text" wrap="hard" value="" placeholder="Enter the number of tabs to create" rows="10" cols="100" style="display:none; text-align: left; width: 100px; word-wrap: break-word; word-break: break-all;">
 
-<button id="construct_DOM_elements" onclick='construct_DOM_elements()'>construct_DOM_elements</button>
-<button id="construct_DOM_elements_w_strings" onclick='construct_DOM_elements_w_strings()'>construct_DOM_elements_w_strings</button>
+<button id="run_selection" onclick='run_selection()'>run_selection</button>
 	
 <div id="display_UI"></div>
 
+
+<!-- Way 3 -->
+<script type="module">
+import { UI_library } from "./dist/lib.js";
+module.UI_library = UI_library;
+</script>
+
+<link rel="stylesheet" type="text/css" href="./dist/ui_styles.css">
+
+
+
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+/* * { margin: 0; padding: 0; box-sizing: border-box; } */
 /* #ebebeb = light gray */
-body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; background: #ebebeb; }
-
-.tabs { display: block; margin-bottom: 30px; }
-
-/* color = text color, background = sets multiple background properties at once, including background-color,  background-color = background color, #32557f = dark blue, #fff = white */
-.content-container { 
-    position: absolute;
-	
-    /* min-width: 600px; */
-    /* max-width: 600px; */
-	
-    width: 450px;
-    height: auto;
-	
-    display: block; 
-	
-    /* margin-top: -50px; */
-    margin-bottom: 50px;
-	
-    background: #32557f;
-    color: #fff;
-	
-    border-radius: .15em; 
-	
-    padding: 2em 3em; 
-    /* z-index: 200; */
-	
-    /* box-shadow: 0px 10px 10px rgba(0, 0, 0, .4); */
-	
-    /* padding: 30px; */
-	
-    border: .2em solid #fff;
-}
-
-nav { position: relative; z-index: 1; }
-
-nav a { position: relative; width: 10em; display: inline-block; padding: .7em 2em .5em; color: #fff; text-decoration: none; margin: 0 -.3em; }
-
-nav a::before { 
-	border: .2em solid #fff; 
-	content: '';
-	position: absolute;
-	top: 0; right: 0; bottom: 0; left: 0;
-	z-index: -1;
-	border-bottom: none;
-	border-radius: .4em .4em 0 0;
-	background: #7eb4e2;
-	/* transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg); */
-}
-
-/* #32557f = dark blue */
-/* &::before refers to the node_p element before any content is inserted  So, nav when a is active should have a certain background-color and margin-bottom. */
-nav a.active { z-index: 2;
-  &::before { background-color: #32557f; margin-bottom: -.08em; }
-}
-
-/* border-radius: top-left | top-right | bottom-right | bottom-left */
-.tab-right-box-shadow {
-  nav { padding-left: 4.8px; }
-  nav a { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-  nav a::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
-  nav a.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 0 100px 0 0; } /* Changes background and font onclick */
-  /* Changes the content-container area to have a box-shadow and align content-container with tabs */
-  .content-container{
-		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
-    		margin-bottom: 50px; /* makes the tabs the right height wrt the content-container */
-    		background: #fff;
-    		color: #000;
-    		border-radius: 30px;
-    		z-index: 100; /* makes the tabs behind the content-container */
-    		box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
-    		padding: 30px;
-  }
-}
-	
-.tab-right {
-  nav { padding-left: 4.8px; }
-  nav a { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-}
-
-.tab-left-box-shadow {
-  nav { padding-left: 4.8px; }
-  nav a { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-  nav a::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
-  nav a.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 100px 0 0 0; } /* Changes background and font onclick */
-  /* Changes the content-container area to have a box-shadow and align content-container with tabs */
-  .content-container{
-		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
-    		margin-bottom: 50px; /* makes the tabs the right height wrt the content-container */
-    		background: #fff;
-    		color: #000;
-    		border-radius: 30px;
-    		z-index: 100; /* makes the tabs behind the content-container */
-    		box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
-    		padding: 30px;
-  }
-}
-
-/* Tabs shifted to the right: #32557f = dark blue, #fff = white */
-.tab-left {
-  nav { padding-left: 4.8px; }
-  nav a { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 5px; }
-}
-
-/* Tabs with round edges: #32557f = dark blue, #fff = white */
-.tab-round-box-shadow {
-  nav { padding-left: 4.8px; }
-  nav a { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 1px; }
-  nav a::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; }
-  nav a.active{ background: #fff; color: #000; margin-bottom: 0; border-radius: 30px; }
-  .content-container{
-		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
-    margin-bottom: 50px; /* makes the tabs the right height wrt the content-container */
-background: #fff;
-    color: #000;
-    border-radius: 30px;
-	  z-index: 100; /* makes the tabs behind the content-container */
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
-    padding: 30px;
-		  }
-}
-
-.tab-round {
-  nav { padding-left: 4.8px; }
-  nav a { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 100px; margin-right: 1px; }
-}
+/* body { font-family: 'Lato', sans-serif; font-size: 14px; padding: 70px; background: #ebebeb; } */
 </style>
-  
-<script>
 
-// -----------------------------------------
-//  program0 functions 
-// -----------------------------------------
-var tabs_container_class;
+
+
+<script>
 	
 async function processEvent_dropdown_options(event) {
 
@@ -167,62 +50,22 @@ async function processEvent_dropdown_options(event) {
 	console.log('element.selectedIndex: ', element.selectedIndex);
 	
 	if (document.getElementById("dropdown_options").selectedIndex == 1) {
-		tabs_container_class = "tabs tab-right-box-shadow";
+		var tabs_container_class = "tabs tab-right-box-shadow";
 	} else if (document.getElementById("dropdown_options").selectedIndex == 2) {
-		tabs_container_class = "tabs tab-right";
+		var tabs_container_class = "tabs tab-right";
 	} else if (document.getElementById("dropdown_options").selectedIndex == 3) {
-		tabs_container_class = "tabs tab-left-box-shadow";
+		var tabs_container_class = "tabs tab-left-box-shadow";
 	} else if (document.getElementById("dropdown_options").selectedIndex == 4) {
-		tabs_container_class = "tabs tab-left";
+		var tabs_container_class = "tabs tab-left";
 	} else if (document.getElementById("dropdown_options").selectedIndex == 5) {
-		tabs_container_class = "tabs tab-round-box-shadow";
+		var tabs_container_class = "tabs tab-round-box-shadow";
 	} else if (document.getElementById("dropdown_options").selectedIndex == 6) {
-		tabs_container_class = "tabs tab-round";
+		var tabs_container_class = "tabs tab-round";
 	}
 
-	document.getElementById("tab_num").style.display = 'block';
 }
 
 document.getElementById("dropdown_options").addEventListener("change", processEvent_dropdown_options, false);
-
-// -----------------------------------------
-
-async function run_program0() {
-
-}
-// -----------------------------------------
-
-
-
-	
-// -----------------------------------------
-// Library functions
-// -----------------------------------------
-
-	
-// -----------------------------------------
-
-function tabs_addEventListener(htmlString) {
-
-	// Just with the htmlString, determine how many eventlisteners are needed 
-	
-	document.getElementById(`tabs_${i}`).addEventListener("click", async () => {
-		// console.log("document.querySelector('.tabs'): ", document.querySelector('.tabs'));
-		// console.log("document.querySelector('.tabs-nav-link'): ", document.querySelector('.tabs-nav-link'));
-
-		for (let j=0; j<tab_num; j++) {
-			if (i == j) {
-				// Only add to "tabs_i"
-				document.getElementById(`tabs_${j}`).classList.add('active');
-				document.getElementById(`tabs_content_${j}`).style.display = "block";
-			} else {
-				// Remove from all "tabs_j"
-				document.getElementById(`tabs_${j}`).classList.remove('active');
-				document.getElementById(`tabs_content_${j}`).style.display = "none";
-			}
-		}
-	});
-}
 
 // -----------------------------------------
 	
@@ -230,6 +73,17 @@ window.addEventListener('beforeunload', function() {
 	window.location.href = window.location.href + '?nocache=' + new Date().getTime();
 	document.getElementById("dropdown_options").selectedIndex = 0;
 });
+
+// -------------------------------------------------
+
+async function run_selection() {
+
+	// Run selections using UI_library.
+
+
+	document.getElementById("tab_num").style.display = 'block';
+	
+}
 
 // -------------------------------------------------
  
