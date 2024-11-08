@@ -69,7 +69,8 @@
 .tab-right {
 	.tabs-nav { padding-left: 4.8px; }
 	.tabs-nav .tabs-nav-link { border-radius: 0 100px 0 0; text-align: center; background: #32557f; color: #fff; }
-	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; } /* Changes font onclick */
+	.tabs-nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; border-radius: 0 100px 0 0; } /* Changes font onclick */
 }
 
 .tab-left-box-shadow {
@@ -94,7 +95,8 @@
 .tab-left {
 	.tabs-nav { padding-left: 4.8px; }
 	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; }
-	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; } /* Changes font onclick */
+	.tabs-nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; border-radius: 100px 0 0 0; } /* Changes font onclick */
 }
 
 /* Tabs with round edges: #32557f = dark blue, #fff = white */
@@ -118,5 +120,6 @@
 .tab-round {
 	.tabs-nav { padding-left: 4.8px; }
 	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; }
-	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; } /* Changes font onclick */
+	.tabs-nav .tabs-nav-link::before { margin-bottom: 0; border-radius: none; background: none; transform: none; border: none; } /*  */
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; border-radius: 30px; } /* Changes font onclick */
 }
