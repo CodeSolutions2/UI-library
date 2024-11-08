@@ -146,86 +146,83 @@ async function run_selection() {
 	var ui_elements = {};
 	
 	if (document.getElementById("dropdown-basic").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"dropdown-basic": 0});
+		if (document.getElementById("dropdown-basic_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"dropdown-basic": Number(document.getElementById("dropdown-basic_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"dropdown-basic": 1});
+		}
 	}
 	
 	if (document.getElementById("input-basic").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"input-basic": 0});
+		if (document.getElementById("input-basic_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"input-basic": Number(document.getElementById("input-basic_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"input-basic": 1});
+		}
 	}
 	
 	if (document.getElementById("navbar-top-left").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"navbar-top-left": 0});
+		ui_elements = Object.assign({}, ui_elements, {"navbar-top-left": 1});
 	}
 	
 	if (document.getElementById("radio-basic").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"radio-basic": 0});
+		if (document.getElementById("radio-basic_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"radio-basic": Number(document.getElementById("radio-basic_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"radio-basic": 1});
+		}
 	}
 	
 	if (document.getElementById("sidebar-right").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"sidebar-right": 0});
+		ui_elements = Object.assign({}, ui_elements, {"sidebar-right": 1});
 	}
 	
 	if (document.getElementById("tab-right-box-shadow").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"tabs tab-right-box-shadow": 0});
+		if (document.getElementById("tab-right-box-shadow_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-right-box-shadow": Number(document.getElementById("tab-right-box-shadow_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-right-box-shadow": 1});
+		}
 	}
 	
 	if (document.getElementById("tab-right").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"tabs tab-right": 0});
+		if (document.getElementById("tab-right_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-right": Number(document.getElementById("tab-right_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-right": 1});
+		}
 	}
 	
 	if (document.getElementById("tab-left-box-shadow").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"tabs tab-left-box-shadow": 0});
+		if (document.getElementById("tab-left-box-shadow_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-left-box-shadow": Number(document.getElementById("tab-left-box-shadow_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-left-box-shadow": 1});
+		}
 	}
 	
 	if (document.getElementById("tab-left").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"tabs tab-left": 0});
+		if (document.getElementById("tab-left_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-left": Number(document.getElementById("tab-left_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-left": 1});
+		}
 	}
 	
 	if (document.getElementById("tab-round-box-shadow").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"tabs tab-round-box-shadow": 0});
+		if (document.getElementById("tab-round-box-shadow_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-round-box-shadow": Number(document.getElementById("tab-round-box-shadow_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-round-box-shadow": 1});
+		}
 	}
 	
 	if (document.getElementById("tab-round").checked == true) {
-		ui_elements = Object.assign({}, ui_elements, {"tabs tab-round": 0});
-	}
-
-	// -----------------------------------------
-	
-	// Obtain the number of UI features.
-	if (document.getElementById("dropdown-basic_num").value.length > 0) {
-		ui_elements["dropdown-basic"] = document.getElementById("dropdown-basic_num").value;
-	}
-	
-	if (document.getElementById("input-basic_num").value.length > 0) {
-		ui_elements["input-basic"] = document.getElementById("input-basic_num").value;
-	}
-	
-	if (document.getElementById("radio-basic_num").value.length > 0) {
-		ui_elements["radio-basic"] = document.getElementById("radio-basic_num").value;
-	}
-	
-	if (document.getElementById("tab-right-box-shadow_num").value.length > 0) {
-		ui_elements["tabs tab-right-box-shadow"] = document.getElementById("tab-right-box-shadow_num").value;
-	}
-	
-	if (document.getElementById("tab-right_num").value.length > 0) {
-		ui_elements["tabs tab-right"] = document.getElementById("tab-right_num").value;
-	}
-	
-	if (document.getElementById("tab-left-box-shadow_num").value.length > 0) {
-		ui_elements["tabs tab-left-box-shadow"] = document.getElementById("tab-left-box-shadow_num").value;
-	}
-	
-	if (document.getElementById("tab-left_num").value.length > 0) {
-		ui_elements["tabs tab-left"] = document.getElementById("tab-left_num").value;
-	}
-	
-	if (document.getElementById("tab-round-box-shadow_num").value.length > 0) {
-		ui_elements["tabs tab-round-box-shadow"] = document.getElementById("tab-round-box-shadow_num").value;
-	}
-	
-	if (document.getElementById("tab-round_num").value.length > 0) {
-		ui_elements["tabs tab-round"] = document.getElementById("tab-round_num").value;
+		if (document.getElementById("tab-round_num").value.length > 0) {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-round": Number(document.getElementById("tab-round_num").value)});
+		} else {
+			ui_elements = Object.assign({}, ui_elements, {"tabs tab-round": 1});
+		}
 	}
 
 	// -----------------------------------------
