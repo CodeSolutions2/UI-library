@@ -2,6 +2,8 @@ export { UI_library, run_multiple_selections }
 
 
 async function UI_library(obj) {
+
+	// -----------------------------------------
 	
 	function run_multiple_selections(obj) {
 
@@ -21,6 +23,7 @@ async function UI_library(obj) {
 		return ui_num;
 	}
 
+	// -----------------------------------------
 	
 	function tabs_construct_DOM_elements_w_strings(tab_num) {
 
@@ -78,6 +81,5 @@ async function UI_library(obj) {
 	// -----------------------------------------
 
 
-	// -----------------------------------------
-
+	// return Object.freeze({ run_multiple_selections });
 }
