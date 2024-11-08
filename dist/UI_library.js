@@ -1,7 +1,4 @@
-export { UI_library, run_multiple_selections }
-
-
-async function UI_library(obj) {
+export async function UI_library(obj) {
 
 	// -----------------------------------------
 	
@@ -81,5 +78,5 @@ async function UI_library(obj) {
 	// -----------------------------------------
 
 
-	// return Object.freeze({ run_multiple_selections });
+	return Object.freeze({ run_multiple_selections });
 }
