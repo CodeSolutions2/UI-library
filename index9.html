@@ -238,13 +238,17 @@ async function run_selection() {
 	// -----------------------------------------
 	
 	// Run selections using UI_library.
-	obj.htmlString = module.UI_library.run_multiple_selections(obj);
+	const ffunction = module.UI_library();
+	var index_out = ffunction.run_multiple_selections(obj);
+	console.log("index_out: ", index_out);
+	
+	// obj.htmlString = ffunction.run_multiple_selections(obj);
 
 	// -----------------------------------------
 
 	// Display the UI elements.
-	var htmlNode = document.createRange().createContextualFragment(obj.htmlString);
-	document.getElementById('display_UI').appendChild(htmlNode);
+	// var htmlNode = document.createRange().createContextualFragment(obj.htmlString);
+	// document.getElementById('display_UI').appendChild(htmlNode);
 
 	// -----------------------------------------
 	
