@@ -2,7 +2,7 @@ export async function UI_library(obj) {
 
 	// -----------------------------------------
 	
-	function run_multiple_selections(obj) {
+	function run_selections(obj) {
 
 		var ui_num = Object.keys(obj.ui_elements);
 		
@@ -76,19 +76,8 @@ export async function UI_library(obj) {
 
 
 	// -----------------------------------------
-
-	// Way 0: ffunction returns a list of function names in index.js
-	// return { run_multiple_selections, tabs_construct_DOM_elements_w_strings };
-	// OR
-	// return Object.freeze({ run_multiple_selections });
-	// Uncaught (in promise) ReferenceError: run_multiple_selections is not defined
 	
-
-	// Way 1: ffunction must return an object in index.js
-	return Object.freeze({ run_multiple_selections: run_multiple_selections });
-	// OR
-	// return { run_multiple_selections: function(obj) { return Object.keys(obj.ui_elements); } };
-	// WORKS!
+	return Object.freeze({ run_selections: run_selections });
 	
 	// -----------------------------------------
 }
