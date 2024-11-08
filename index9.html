@@ -82,7 +82,7 @@
 
 <!-- Way 3 -->
 <script type="module">
-import { UI_library } from "./dist/lib.js";
+import { UI_library } from "./dist/UI_library.js";
 module.UI_library = UI_library;
 </script>
 
@@ -113,101 +113,125 @@ const module = {};
 
 window.addEventListener('beforeunload', function() {
 	window.location.href = window.location.href + '?nocache=' + new Date().getTime();
-	document.getElementById("dropdown_options").selectedIndex = 0;
+	
+	// Reset selections
+	document.getElementById("dropdown-basic").checked = false;
+	document.getElementById("input-basic").checked = false;
+	document.getElementById("navbar-top-left").checked = false;
+	document.getElementById("radio-basic").checked = false;
+	document.getElementById("sidebar-right").checked = false;
+	document.getElementById("tab-right-box-shadow").checked = false;
+	document.getElementById("tab-right").checked = false;
+	document.getElementById("tab-left-box-shadow").checked = false;
+	document.getElementById("tab-left").checked = false;
+	document.getElementById("tab-round-box-shadow").checked = false;
+	document.getElementById("tab-round").checked = false;
+	document.getElementById("toggle-box-shadow").checked = false;
+	
+	document.getElementById("dropdown-basic_num").value = "";
+	document.getElementById("input-basic_num").value = "";
+	document.getElementById("radio-basic_num").value = "";
+	document.getElementById("tab-right-box-shadow_num").value = "";
+	document.getElementById("tab-right_num").value = "";
+	document.getElementById("tab-left-box-shadow_num").value = "";
+	document.getElementById("tab-left_num").value = "";
+	document.getElementById("tab-round-box-shadow_num").value = "";
+	document.getElementById("tab-round_num").value = "";
 });
 
 // -------------------------------------------------
 
 async function run_selection() {
 
-	var obj = {};
+	var ui_elements = {};
 	
 	if (document.getElementById("dropdown-basic").checked == true) {
-		obj = Object.assign({}, obj, {"dropdown-basic": 0});
+		ui_elements = Object.assign({}, ui_elements, {"dropdown-basic": 0});
 	}
 	
 	if (document.getElementById("input-basic").checked == true) {
-		obj = Object.assign({}, obj, {"input-basic": 0});
+		ui_elements = Object.assign({}, ui_elements, {"input-basic": 0});
 	}
 	
 	if (document.getElementById("navbar-top-left").checked == true) {
-		obj = Object.assign({}, obj, {"navbar-top-left": 0});
+		ui_elements = Object.assign({}, ui_elements, {"navbar-top-left": 0});
 	}
 	
 	if (document.getElementById("radio-basic").checked == true) {
-		obj = Object.assign({}, obj, {"radio-basic": 0});
+		ui_elements = Object.assign({}, ui_elements, {"radio-basic": 0});
 	}
 	
 	if (document.getElementById("sidebar-right").checked == true) {
-		obj = Object.assign({}, obj, {"sidebar-right": 0});
+		ui_elements = Object.assign({}, ui_elements, {"sidebar-right": 0});
 	}
 	
 	if (document.getElementById("tab-right-box-shadow").checked == true) {
-		obj = Object.assign({}, obj, {"tabs tab-right-box-shadow": 0});
+		ui_elements = Object.assign({}, ui_elements, {"tabs tab-right-box-shadow": 0});
 	}
 	
 	if (document.getElementById("tab-right").checked == true) {
-		obj = Object.assign({}, obj, {"tabs tab-right": 0});
+		ui_elements = Object.assign({}, ui_elements, {"tabs tab-right": 0});
 	}
 	
 	if (document.getElementById("tab-left-box-shadow").checked == true) {
-		obj = Object.assign({}, obj, {"tabs tab-left-box-shadow": 0});
+		ui_elements = Object.assign({}, ui_elements, {"tabs tab-left-box-shadow": 0});
 	}
 	
 	if (document.getElementById("tab-left").checked == true) {
-		obj = Object.assign({}, obj, {"tabs tab-left": 0});
+		ui_elements = Object.assign({}, ui_elements, {"tabs tab-left": 0});
 	}
 	
 	if (document.getElementById("tab-round-box-shadow").checked == true) {
-		obj = Object.assign({}, obj, {"tabs tab-round-box-shadow": 0});
+		ui_elements = Object.assign({}, ui_elements, {"tabs tab-round-box-shadow": 0});
 	}
 	
 	if (document.getElementById("tab-round").checked == true) {
-		obj = Object.assign({}, obj, {"tabs tab-round": 0});
+		ui_elements = Object.assign({}, ui_elements, {"tabs tab-round": 0});
 	}
-	
-	
 
+	// -----------------------------------------
+	
 	// Obtain the number of UI features.
 	if (document.getElementById("dropdown-basic_num").value.length > 0) {
-		obj["dropdown-basic"] = document.getElementById("dropdown-basic_num").value;
+		ui_elements["dropdown-basic"] = document.getElementById("dropdown-basic_num").value;
 	}
 	
 	if (document.getElementById("input-basic_num").value.length > 0) {
-		obj["input-basic"] = document.getElementById("input-basic_num").value;
+		ui_elements["input-basic"] = document.getElementById("input-basic_num").value;
 	}
 	
 	if (document.getElementById("radio-basic_num").value.length > 0) {
-		obj["radio-basic"] = document.getElementById("radio-basic_num").value;
+		ui_elements["radio-basic"] = document.getElementById("radio-basic_num").value;
 	}
 	
 	if (document.getElementById("tab-right-box-shadow_num").value.length > 0) {
-		obj["tabs tab-right-box-shadow"] = document.getElementById("tab-right-box-shadow_num").value;
+		ui_elements["tabs tab-right-box-shadow"] = document.getElementById("tab-right-box-shadow_num").value;
 	}
 	
 	if (document.getElementById("tab-right_num").value.length > 0) {
-		obj["tabs tab-right"] = document.getElementById("tab-right_num").value;
+		ui_elements["tabs tab-right"] = document.getElementById("tab-right_num").value;
 	}
 	
 	if (document.getElementById("tab-left-box-shadow_num").value.length > 0) {
-		obj["tabs tab-left-box-shadow"] = document.getElementById("tab-left-box-shadow_num").value;
+		ui_elements["tabs tab-left-box-shadow"] = document.getElementById("tab-left-box-shadow_num").value;
 	}
 	
 	if (document.getElementById("tab-left_num").value.length > 0) {
-		obj["tabs tab-left"] = document.getElementById("tab-left_num").value;
+		ui_elements["tabs tab-left"] = document.getElementById("tab-left_num").value;
 	}
 	
 	if (document.getElementById("tab-round-box-shadow_num").value.length > 0) {
-		obj["tabs tab-round-box-shadow"] = document.getElementById("tab-round-box-shadow_num").value;
+		ui_elements["tabs tab-round-box-shadow"] = document.getElementById("tab-round-box-shadow_num").value;
 	}
 	
 	if (document.getElementById("tab-round_num").value.length > 0) {
-		obj["tabs tab-round"] = document.getElementById("tab-round_num").value;
+		ui_elements["tabs tab-round"] = document.getElementById("tab-round_num").value;
 	}
 
 	// -----------------------------------------
 
 	// View the selections to view from the UI library.
+	var obj = {"ui_elements": ui_elements};
 	console.log("obj: ", obj);
 
 	// -----------------------------------------
@@ -224,7 +248,7 @@ async function run_selection() {
 	// -----------------------------------------
 	
 	// Add functionality to UI elements.
-	module.UI_library.tabs_addEventListener(obj);
+	// module.UI_library.tabs_addEventListener(obj);
 
 	// -----------------------------------------
 }
