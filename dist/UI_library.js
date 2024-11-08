@@ -78,5 +78,5 @@ export async function UI_library(obj) {
 	// -----------------------------------------
 
 
-	return Object.freeze({ run_multiple_selections });
+	return { run_multiple_selections: run_multiple_selections() };
 }
