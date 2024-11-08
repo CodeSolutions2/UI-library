@@ -3,7 +3,7 @@
 /* color = text color, background = sets multiple background properties at once, including background-color,  background-color = background color, #32557f = dark blue, #fff = white */
 .content-container { 
 	position: absolute;
-	width: auto;
+	width: 100%;
 	height: auto;
 	display: block; 
 	margin-bottom: 50px;
@@ -84,11 +84,8 @@
 /* Tabs shifted to the right: #32557f = dark blue, #fff = white */
 .tab-left {
 	.tabs-nav { padding-left: 4.8px; }
-	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; height: 75px; margin-right: 5px; }
-	/* align content-container with tabs */
-	.content-container{
-    		z-index: 100; /* makes the tabs behind the content-container */
-	}
+	.tabs-nav .tabs-nav-link { border-radius: 100px 0 0 0; text-align: center; background: #32557f; color: #fff; }
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; } /* Changes font onclick */
 }
 
 /* Tabs with round edges: #32557f = dark blue, #fff = white */
@@ -111,11 +108,6 @@
 
 .tab-round {
 	.tabs-nav { padding-left: 4.8px; }
-	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; height: 75px; margin-right: 1px; }
-	/* align content-container with tabs */
-	.content-container{
-		margin-top: -50px; /* makes the tabs the right height wrt the content-container */
-		margin-bottom: 50px; /* makes the tabs the right height wrt the content-container */
-    		z-index: 100; /* makes the tabs behind the content-container */
-	}
+	.tabs-nav .tabs-nav-link { border-radius: 30px; padding-top: 13px; text-align: center; background: #32557f; color: #fff; }
+	.tabs-nav .tabs-nav-link.active{ background: #fff; color: #000; } /* Changes font onclick */
 }
